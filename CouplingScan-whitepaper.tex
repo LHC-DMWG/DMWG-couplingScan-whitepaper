@@ -231,6 +231,7 @@ We plan to focus on s-channel DM simplified models, where the mediator particle 
 
 Explain goal - to be able to scale results in one model/set of parameters to any other with reasonable accuracy without resorting to generating events.
 
+While the techniques shown here are extendable to lepton colliders, they have only so far been developed in the context of hadron colliders. All results presented today are based on LHC limits, and the software published in conjunction with this paper currently only serves hadronic initial states.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Models considered}
@@ -243,12 +244,39 @@ Considering both vector and axial-vector mediator $s$-channel models. Want to co
 \section{Resonant final states}
 \label{sec:resonant}
 
-\subsection{Di-jet and di-jet+X}
+\subsection{Dijet and dijet+X}
 
-\subsection{Di-lepton}
+% Introduce: this was developed by CMS and has been in use for a long time.  Taking this opportunity to document it in detail.
 
-Discuss the di-lepton final state requires accounting for widths more carefully since the resolution is much better.
+% Model relevance - vector/AV only, because di-x is not a strong constraint on scalar/pseudoscalar models.
 
+% On-shell decay to quarks is possible everywhere, so we can use on-shell approximations
+
+% Assumptions: no change in acceptance across those points. And narrow width (inbuilt in approximation, comment). K-factor? Or is this order-independent?
+The primary assumption required by this approach is that the analysis acceptance is constant for a single mediator mass, regardless of dark matter mass and coupling choices. This assumption is reasonable so long as the intrinsic width of the mediator is narrower than the analysis mass resolution, but should be checked for each analysis and the boundaries of its validity well understood. In cases where the mass resolution is good and this assumption cannot be fairly made, e.g. dilepton final states, a modified technique can be applied as described in Section~\ref{sec:dilepton}. 
+
+Two additional assumptions are also required. First, the mediator must have a sufficiently narrow intrinsic width that [....]. {\color{red} can we quantify when this fails? Likely safe given that it falls inside the previous assumption, but still....}. Second, the $k$-factors are assumed to be equal at all points independent of DM mass and of coupling for a given mediator mass.
+
+% Illustrate with a plot showing which points in the plane are equated? State that means we are assuming acceptances consistent there.
+
+
+% Show that of course, we can also start from a mass-mass plane and get any other mass-mass plane. If limit calculated at each point that would let us get around the assumptions, e.g. if 
+
+\subsection{Dilepton and other high-resolution resonances}
+\label{sec:dilepton}
+
+% CMS dilepton already doing this https://arxiv.org/pdf/1803.06292.pdf
+
+Discuss the di-lepton final state requires accounting for widths more carefully since the resolution is much better. Point out this method also works for eliminating assumptions about width/acceptance consistency in the dijet limit case - can use the same code there. 
+
+This removes the need to assume that the acceptance is unchanged as a function of dark matter mass and coupling values. Instead, by providing a range of limits corresponding to various intrinsic width to mass ratios for a single mediator mass point, the most appropriate one can be chosen for each coupling and DM mass.
+
+% Interpolation we are doing in between them - not yet settled. I am just thinking linear, and no limit given if wider than the widest line?
+There are several possible ways to approach points with widths in between the provided curves. The most conservative approach would always use the weaker of the two neighbouring limit curves (that is, the one corresponding to larger width). To produce a smoothly varying exclusion result instead of one with distinct regions corresponding to transitions between the curves, the default approach uses a {\color{red} linear?} interpolation between the limit curves to select constraints on intermediate widths.
+
+% Kate still needs to implement this....
+
+% Example? Compare to a CMS example?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mono-$X$ final states}
@@ -257,7 +285,7 @@ Discuss the di-lepton final state requires accounting for widths more carefully 
 {\color{red} The work in this section has been undertaken with only vector and axial-vector models in mind; if we wish to extend it to scalars that work has yet to be done.}
 
 % Why mono-x signatures need to contend with off-shell scenarios and thus cannot use the same approximations
-For \metplusx signatures, the relevant final state involves decay of the mediator to dark matter particles, and therefore the off-shell case has to be handled appropriately.
+For \metplusx signatures, the relevant final state involves decay of a mediator to dark matter particles, and therefore the off-shell case has to be handled appropriately.
 The approximations used for visible resonant final states in Section~\ref{sec:resonant} require a well-defined decay width to the final state $\Gamma_f$, which goes to zero at $\mMed=2\mDM$ for an invisible final state. The approximation in fact loses validity before this diagonal is fully reached, as the transition across the on-shell to off-shell boundary is smooth. A method for re-scaling \metplusx signatures has therefore been developed with the goal of handling this transition smoothly such that it is applicable in all regimes.
 
 % How have they been handled previously? Discuss method.
@@ -285,7 +313,7 @@ Coupling dependence comes not only from the explicit $g_q^2 g_\chi^2$ factor but
 $\mathcal{I}_{\text{prop}}$ is easily analytically calculable and the ratio of its value for two different coupling scenarios at a given \mDM and \mMed provides a robust estimate of the cross section in the target scenario, so long as both assume the same mediator type.
 
 % Show example
-The $\mathcal{I}_{\text{prop}}$-based scaling procedure is illustrated in Figure~\ref{fig:propagator_scaling} using the ATLAS $\met+\gamma$ analysis in 36 \ifb of data~\cite{monophoton}. Circles show the locations of the signal points used. Each signal point has a $z$-axis value of theoretical cross section divided by excluded cross section; white points are those with $z<1$ and are excluded while red points have $z>1$ and are not excluded. The red curves show the exclusion contours reported by the analysis in each plane. The blue shades are a linear interpolation between the points used to illustrate the cross section exclusion surface. In Figure~\ref{subfig:monophoton_A1} no reinterpretation is done: the values at each point are taken directly from the paper and overlaid with the corresponding exclusion curve. In Figure~\ref{subfig:monophoton_A2} the values at each point are calculated using the $\mathcal{I}_{\text{prop}}$ scaling procedure starting from the values in Figure~\ref{subfig:monophoton_A1}. The white and red colour coding of points is based on these rescaled values, as is the linear interpolation in blue. The good agreement between the contour curve taken from the paper and the points marked as excluded by the rescaling method serves as a validation of the rescaling.
+The $\mathcal{I}_{\text{prop}}$-based scaling procedure is illustrated in Figure~\ref{fig:propagator_scaling} using the observed limits from the ATLAS $\met+\gamma$ analysis in 36 \ifb of data~\cite{monophoton}. Circles show the locations of the signal points used. Each signal point has a $z$-axis value of theoretical cross section divided by excluded cross section; white points are those with $z<1$ and are excluded while red points have $z>1$ and are not excluded. The red curves show the exclusion contours reported by the analysis in each plane. The blue shades are a linear interpolation between the points used to illustrate the cross section exclusion surface. In Figure~\ref{subfig:monophoton_A1} no reinterpretation is done: the values at each point are taken directly from the paper and overlaid with the corresponding exclusion curve. In Figure~\ref{subfig:monophoton_A2} the values at each point are calculated using the $\mathcal{I}_{\text{prop}}$ scaling procedure starting from the values in Figure~\ref{subfig:monophoton_A1}. The white and red colour coding of points is based on these rescaled values, as is the linear interpolation in blue. The good agreement between the contour curve taken from the paper and the points marked as excluded by the rescaling method serves as a validation of the rescaling.
 
 %-----------------------------------
 \begin{figure}[htp!]
@@ -356,7 +384,7 @@ A demonstration of the $\sigma_{V/AV}^{\text{tot}}$-based scaling procedure is g
 
 % Summarise algorithm: use full cross section integral to translate initial plane into any other models desired. 
 % Use propagator scaling to scan coupling exclusions within that model.
-The full recommended procedure for rescaling \metplusx analysis results is therefore to use the $\sigma_{V/AV}^{\text{tot}}$-based rescaling procedure to convert from the original scenario into one scenario in each differing target model ({\color{red} currently only possible for $V\rightarrow AV$ or $AV\rightarrow V$}). The $\mathcal{I}_{\text{prop}}$-based rescaling procedure can then be used to convert to other scenarios within the same model, either from this reinterpreted scenario or from either the original scenario.
+The full recommended procedure for rescaling \metplusx analysis results is therefore to use the $\sigma_{V/AV}^{\text{tot}}$-based rescaling procedure to convert from the original scenario into one scenario in each differing target model ({\color{red} currently only possible for $V\rightarrow AV$ or $AV\rightarrow V$}). The $\mathcal{I}_{\text{prop}}$-based rescaling procedure can then be used to convert to other scenarios within the same model, either from this reinterpreted scenario or from the original scenario.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Combined examples}
