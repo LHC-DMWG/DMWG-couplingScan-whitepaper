@@ -248,7 +248,7 @@ Considering both vector and axial-vector mediator $s$-channel models. Want to co
 
 % Introduce: this was developed by CMS and has been in use for a long time.  Taking this opportunity to document it in detail.
 
-% Model relevance - vector/AV only, because di-x is not a strong constraint on scalar/pseudoscalar models.
+% Model relevance - vector/AV only, because di-x is not a strong constraint on scalar/pseudoscalar models, so we aren't worrying about it
 
 % On-shell decay to quarks is possible everywhere, so we can use on-shell approximations
 
@@ -257,15 +257,13 @@ The primary assumption required by this approach is that the analysis acceptance
 
 Two additional assumptions are also required. First, the mediator must have a sufficiently narrow intrinsic width that [....]. {\color{red} can we quantify when this fails? Likely safe given that it falls inside the previous assumption, but still....}. Second, the $k$-factors are assumed to be equal at all points independent of DM mass and of coupling for a given mediator mass.
 
-% Illustrate with a plot showing which points in the plane are equated? State that means we are assuming acceptances consistent there.
-
-
-% Show that of course, we can also start from a mass-mass plane and get any other mass-mass plane. If limit calculated at each point that would let us get around the assumptions, e.g. if 
+% Illustrate with a plot? Or not, could do just math here and an illustration in the dilepton section ....
+ 
 
 \subsection{Dilepton and other high-resolution resonances}
 \label{sec:dilepton}
 
-% CMS dilepton already doing this https://arxiv.org/pdf/1803.06292.pdf
+% CMS dilepton already doing this https://arxiv.org/pdf/1803.06292.pdf, could show something from it as an example
 
 Discuss the di-lepton final state requires accounting for widths more carefully since the resolution is much better. Point out this method also works for eliminating assumptions about width/acceptance consistency in the dijet limit case - can use the same code there. 
 
@@ -274,9 +272,7 @@ This removes the need to assume that the acceptance is unchanged as a function o
 % Interpolation we are doing in between them - not yet settled. I am just thinking linear, and no limit given if wider than the widest line?
 There are several possible ways to approach points with widths in between the provided curves. The most conservative approach would always use the weaker of the two neighbouring limit curves (that is, the one corresponding to larger width). To produce a smoothly varying exclusion result instead of one with distinct regions corresponding to transitions between the curves, the default approach uses a {\color{red} linear?} interpolation between the limit curves to select constraints on intermediate widths.
 
-% Kate still needs to implement this....
-
-% Example? Compare to a CMS example?
+% Kate still needs to implement this in the code
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mono-$X$ final states}
