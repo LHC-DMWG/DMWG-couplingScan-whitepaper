@@ -233,19 +233,21 @@ We focus here on s-channel DM simplified models where the mediator particle has 
 
 The search for new particles belonging to dark sectors is one of the primary focuses of the particle physics community, both at dedicated dark matter search experiments and at colliders. The ATLAS and CMS collaborations have focused Since the establishment by the LHC Dark Matter Working Group of a specific set of simplified models in 20XX, ATLAS and CMS have used these models as the basis for many of their statements on dark matter exclusions. These simplified models, while they are only one framework for interpreting dark matter limits and should be complemented by e.g. 2HDM+a and SUSY based models, serve an important purpose by \ldots
 
-The goal of this paper is to establish techniques for converting analysis limits computed in the context of one set of simplified model parameters into any other desired set of model parameters, with reasonable accuracy without resorting to generating events. This will allow 
+% Nice paragraph on complementarity and how this will let us probe it
+
+The goal of this paper is to establish techniques for converting analysis limits computed in the context of one set of simplified model parameters into any other desired set of model parameters, with reasonable accuracy and without resorting to generating events. This will allow 
 
 
 
 While the techniques shown here are extendable to lepton colliders, they have only so far been developed in the context of hadron colliders. All results presented today are based on LHC limits, and the software published in conjunction with this paper currently only serves hadronic initial states. 
 
-Note on how this is for Snowmass and a follow-up version will be submitted for publication; it will contain public code.
+Note on how this is for Snowmass and a follow-up version will be submitted for publication; it will contain fully documented and supported code package. For now, code is available on Github here.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Models considered}
 \label{sec:models}
 
-The models considered in this study are detailed extensively in Refs.~\cite{ABERCROMBIE2020100371,Albert:2017onk}. Each simplified model adds two new particles beyond the Standard Model: a Dirac fermion dark matter particle $\chi$ and an $s$-channel mediator particle. This mediator can be spin-1, in which case its couplings can be either vector or axial-vector in nature, or spin-0, in which case its couplings are scalar or pseudo-scalar. This Snowmass paper draft only provides coupling scan formulas for models with vector or axial-vector mediators. While the set of simplified models used by CMS and ATLAS also include those with scalar and pseudoscalar mediators, the different leading order processes in these models mean that a similar approach to rescaling couplings will require additional development and testing before it can be released. This will be left as a project for a future paper. Further discussion of the models will therefore focus only on the vector and axial-vector scenarios.
+The models considered in this study are detailed extensively in Refs.~\cite{ABERCROMBIE2020100371,Albert:2017onk}. Each simplified model adds two new particles beyond the Standard Model: a Dirac fermion dark matter particle $\chi$ and an $s$-channel mediator particle. This mediator can be spin-1, in which case its couplings can be either vector or axial-vector in nature, or spin-0, in which case its couplings are scalar or pseudo-scalar. This Snowmass paper draft only provides rescaling formulas for the models with vector or axial-vector mediators. For resonant final states like dijet and dilepton, there is no strong motivation to extend the rescaling methods developed here, this since these final states do not provide a strong constraint on scalar and pseudoscalar models. For invisible final states it would indeed be very useful, however the different leading order processes in these models mean that a similar approach to rescaling couplings will require separate derivation.  This will be left as a project for a future paper. Further discussion of the models here will therefore focus only on the vector and axial-vector scenarios.
 
 % Talk about couplings independence, what can be set, what vertices we have
 The coupling of the vector and axial-vector mediators to Standard Model particles is generally treated as  This leads to a model fully defined by five free parameters: the mediator mass \mMed, the dark matter particle mass \mDM, the coupling strength of a vertex between the mediator and two dark matter particles \gdm, a single universal coupling between the mediator and Standard Model quarks \gq, and a single universal coupling between the mediator and Standard Model leptons \gl. For lighter mediator masses, decays into heavy quarks or leptons will be kinematically forbidden, but the coupling is always taken to be constant for all fermion generations.
@@ -256,18 +258,40 @@ The leading order processes for
 % Mention relevance of going to NLO for real limits but possibility of rescaling at LO - check that out, but our calculations here are tree-level
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Section: Scanning couplings in exclusion limits
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resonant final states}
 \label{sec:resonant}
 
-\subsection{Dijet and dijet+X}
+Why we can start from 1D limit here: tie it into physical signature. Mention that math worked out in this section assumes you have negligible sensitivity to intrinsic width; see next section for otherwise.
+
+Point to cross-section-mass plot. Exclusion depth is obs/theory - thus in 1D exclusion limit is where the two cross. For mass-mass plots this depth exists in 2D plane and what we want is twofold: find it from inputs that are standardly produced by analysis teams and 2) rescale it analytically to other couplings etc.
 
 % Introduce: this was developed by CMS and has been in use for a long time.  Taking this opportunity to document it in detail.
 
 % Model relevance - vector/AV only, because di-x is not a strong constraint on scalar/pseudoscalar models, so we don't need to worry about it
 
-% On-shell decay to quarks is possible everywhere, so we can use on-shell approximations everywhere. At tree level just the one diagram with two quark couplings.
+What's fixed? Can't rescale from one mediator mass to another since that is what directly dictates analysis properties. So can only interpret in other dimensions.
+Can interpret across dark matter mass, specifically because no DM mass present in leading order diagram for visible final states.
+Can interpret across couplings, since changing couplings changes cross sections and widths but nothing else.
 
-% How?
+Approach: change cross section of signal as long as it stays within bounds where the experimental limit for such a model would be the same, or is otherwise known. That is, shape and/or acceptance do not change outside the bounds of what we have experimental results to cover. In this case, can rescale the exclusion depth by the ratio of theoretical cross sections for the scenario in which the limit plot was made and the scenario in which you wish to interpret it. We use a range of approximations for those cross sections depending on 
+
+Comment on assumptions here? Probably?
+
+\subsection{Dijet and dijet+X}
+
+
+% Goal: begin from standard final plot, and/or g	q plot.
+
+% On-shell decay to quarks is possible everywhere, so we can use on-shell approximations everywhere. At tree level just the one diagram with two quark couplings. Explain how ISR factors out so it will work fine for dijet+ISR too.
+
+% How pt 1: cross section limit to 2d limit
+
+% How pt 2: rescaling the 2d limit (super easy)
 
 % Assumptions: no change in acceptance across those points. And narrow width (inbuilt in approximation, comment). K-factor? Or is this order-independent?
 The primary assumption required by this approach is that the analysis acceptance is constant for a single mediator mass, regardless of dark matter mass and coupling choices. This assumption is reasonable so long as the intrinsic width of the mediator is narrower than the analysis mass resolution, but should be checked for each analysis and the boundaries of its validity well understood. In cases where the mass resolution is good and this assumption cannot be fairly made, e.g. dilepton final states, a modified technique can be applied as described in Section~\ref{sec:dilepton}. 
@@ -397,13 +421,28 @@ A demonstration of the $\sigma_{V/AV}^{\text{tot}}$-based scaling procedure is g
 The full recommended procedure for rescaling \metplusx analysis results is therefore to use the $\sigma_{V/AV}^{\text{tot}}$-based rescaling procedure to convert from the original model with one type of mediator into a single scenario with the desired new mediator type (e.g. vector mediator to axial-vector mediator). The $\mathcal{I}_{\text{prop}}$-based rescaling procedure can then be used to convert to other coupling scenarios with the same mediator type.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Combined examples}
+\section{Combined examples of coupling-scaled exclusion plots}
 
 Would like to show a full summary plot with 36 ifb results from a variety of channels, then scale to at least one set of as-yet-unexplored couplings, to illustrate the power. Probably just 1 to 2 figures here.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Relic densities and their relationships to couplings in DM simplified models}
+
+{\color{red}Put cool plots from Phil here}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
+% We have demonstrated the way that you can mathematically rescale from AV to V and back, between different couplings, for invisible and visible final states whose LO diagrams are the ones given here.
+
+% Certain caveats to do with acceptances - these are the responsibility of the reader
+
+% Certain caveats to do with k-factors - can make no guarantees so check or sort out an extrapolation if concerned
+
+% Code will be made public with full paper, but you can of course reach out to us for it now, and it is available to members of both ATLAS and CMS already
+
+% Interested in a follow-up that will include scalar and pseudoscalar, but math is quite different.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
