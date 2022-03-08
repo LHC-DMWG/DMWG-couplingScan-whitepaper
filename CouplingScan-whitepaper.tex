@@ -192,19 +192,17 @@
 \hfill CERN-LPCC-2020-XX
 
 \abstract{
-Dark matter is one of the main science drivers of the particle and astroparticle physics community.  Determining the nature of dark matter will require a broad approach, with multiple experiments pursuing different experimental hypotheses.
+Dark matter is one of the main science drivers of the particle and astroparticle physics community.  Determining the nature of dark matter will require a broad approach, with a range of experiments pursuing different experimental hypotheses. As one axis of this search program, collider experiments provide insight on dark matter complementary to searches in direct/indirect detection experiments and to astrophysical evidence.
 
-Dark matter particles could be produced at particle colliders. Dark matter searches at collider experiments provide insight on dark matter complementary to searches in direct/indirect detection experiments, and to astrophysical evidence.
-
-In order to compare results from a wide variety of experiments, a common theoretical framework is required. Among the numerous theoretical frameworks that describe dark matter (see e.g.~\cite{doi:10.1146/annurev-astro-082708-101659}, and \cite{Kahlhoefer:2017dnp,doi:10.1146/annurev-nucl-101917-021008} for collider-focused reviews), the ATLAS and CMS experiments at the Large Hadron Collider have adopted a series of simplified models that include dark matter particles as benchmarks for their searches~\cite{ABERCROMBIE2020100371}.
+In order to compare results from a wide variety of experiments, a common theoretical framework is required. Among the numerous theoretical frameworks that describe dark matter (see e.g.~\cite{doi:10.1146/annurev-astro-082708-101659}, and \cite{Kahlhoefer:2017dnp,doi:10.1146/annurev-nucl-101917-021008} for collider-focused reviews), the ATLAS and CMS experiments at the Large Hadron Collider have adopted a series of simplified models that include dark matter particles as benchmarks for their searches.
 
 In these models, the interaction between Standard Model (SM) and dark matter particles is mediated by a new particle, called a mediator. The interaction strength is controlled by the couplings of the mediator to dark matter and to SM particles. 
 
 So far, the presentation of LHC results (as well as the presentation of projections of future hadron collider experiments) has focused on four benchmark scenarios with different choices of couplings to quarks and leptons, as recommended by the Dark Matter Working Group~\cite{BOVEIA2020100365, ALBERT2019100377}.
 
-In this work, we plan to describe methods to extend those four benchmark scenarios to scenarios with arbitrary couplings, and release the corresponding code for use in further studies and projections of collider dark matter searches in the framework of simplified models. This will extend the applicability of the comparisons of collider searches to accelerator experiments that are sensitive to smaller couplings, and give a more complete picture of the coupling dependence of the sensitivity of dark matter collider searches when compared to direct and indirect detection searches. By using semi-analytical methods to model the dependence, we plan to drastically reduce the need for computing resources relative to traditional approaches based on the generation of additional simulated signal samples.
+In this work, we describe methods to extend those four benchmark scenarios to scenarios with arbitrary couplings, and release the corresponding code for use in further studies and projections of collider dark matter searches in the framework of simplified models. This will extend the applicability of the comparisons of collider searches to accelerator experiments that are sensitive to smaller couplings, and give a more complete picture of the coupling dependence of the sensitivity of dark matter collider searches when compared to direct and indirect detection searches. By using semi-analytical methods to model the dependence, we plan to drastically reduce the need for computing resources relative to traditional approaches based on the generation of additional simulated signal samples.
 
-We plan to focus on s-channel DM simplified models, where the mediator particle has vector, axial-vector, scalar and pseudoscalar couplings with DM and SM particles. This work will cover collider searches for visible decays of the mediator particles, as well as for searches targeting the invisible particles via the associated production of one or more SM particles~\cite{ATL-PHYS-PUB-2020-021,CMSSummary}.
+We focus here on s-channel DM simplified models where the mediator particle has vector or axial-vector couplings to DM and SM particles. This work will cover collider searches for visible decays of the mediator particles, as well as for searches targeting the invisible particles via the associated production of one or more SM particles~\cite{ATL-PHYS-PUB-2020-021,CMSSummary}.
 }  
 
 \maketitle
@@ -229,16 +227,25 @@ We plan to focus on s-channel DM simplified models, where the mediator particle 
 \section{Introduction}
 \label{sec:introduction}
 
-Explain goal - to be able to scale results in one model/set of parameters to any other with reasonable accuracy without resorting to generating events.
+The search for new particles belonging to dark sectors is one of the primary focuses of the particle physics community, both at dedicated dark matter search experiments and at colliders. The ATLAS and CMS collaborations have focused Since the establishment by the LHC Dark Matter Working Group of a specific set of simplified models in 20XX, ATLAS and CMS have used these models as the basis for many of their statements on dark matter exclusions. These simplified models, while they are only one framework for interpreting dark matter limits and should be complemented by e.g. 2HDM+a and SUSY based models, serve an important purpose by
 
-While the techniques shown here are extendable to lepton colliders, they have only so far been developed in the context of hadron colliders. All results presented today are based on LHC limits, and the software published in conjunction with this paper currently only serves hadronic initial states.
+Explain goal - to be able to scale results in one model/set of parameters to any other with reasonable accuracy without resorting to generating events. This should be bulk of intro.
+
+While the techniques shown here are extendable to lepton colliders, they have only so far been developed in the context of hadron colliders. All results presented today are based on LHC limits, and the software published in conjunction with this paper currently only serves hadronic initial states. 
+
+Note on how this is for Snowmass and a follow-up version will be submitted for publication; it will contain public code.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Models considered}
 \label{sec:models}
 
-Considering both vector and axial-vector mediator $s$-channel models. Want to consider scalar, pseudoscalar too with some help from the experts! Add citations to original DMWG papers.
+The models considered in this study are detailed extensively in Ref.~\cite{ABERCROMBIE2020100371}. Each simplified model adds two new particles beyond the Standard Model: a Dirac fermion dark matter particle $\chi$ and an $s$-channel mediator particle. This mediator can be spin-1, in which case its couplings can be either vector or axial-vector in nature, or spin-0, in which case its couplings are scalar or pseudo-scalar. This Snowmass paper draft only provides coupling scan formulas for models with vector or axial-vector mediators. While the set of simplified models used by CMS and ATLAS also include those with scalar and pseudoscalar mediators, the different leading order processes in these models mean that a similar approach to rescaling couplings will require additional development and testing before it can be released. This will be left as a project for a future paper. Further discussion of the models will therefore focus only on the vector and axial-vector scenarios.
 
+% Talk about couplings independence, what can be set, what vertices we have
+
+% Mention leading order diagrams and our key analyses.
+
+% Mention relevance of going to NLO for real limits but possibility of rescaling at LO - check that out, but our calculations here are tree-level
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resonant final states}
@@ -248,9 +255,9 @@ Considering both vector and axial-vector mediator $s$-channel models. Want to co
 
 % Introduce: this was developed by CMS and has been in use for a long time.  Taking this opportunity to document it in detail.
 
-% Model relevance - vector/AV only, because di-x is not a strong constraint on scalar/pseudoscalar models, so we aren't worrying about it
+% Model relevance - vector/AV only, because di-x is not a strong constraint on scalar/pseudoscalar models, so we don't need to worry about it
 
-% On-shell decay to quarks is possible everywhere, so we can use on-shell approximations
+% On-shell decay to quarks is possible everywhere, so we can use on-shell approximations everywhere. At tree level just the one diagram with two quark couplings.
 
 % Assumptions: no change in acceptance across those points. And narrow width (inbuilt in approximation, comment). K-factor? Or is this order-independent?
 The primary assumption required by this approach is that the analysis acceptance is constant for a single mediator mass, regardless of dark matter mass and coupling choices. This assumption is reasonable so long as the intrinsic width of the mediator is narrower than the analysis mass resolution, but should be checked for each analysis and the boundaries of its validity well understood. In cases where the mass resolution is good and this assumption cannot be fairly made, e.g. dilepton final states, a modified technique can be applied as described in Section~\ref{sec:dilepton}. 
