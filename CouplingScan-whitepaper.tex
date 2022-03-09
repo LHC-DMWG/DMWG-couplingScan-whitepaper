@@ -1,6 +1,8 @@
-\documentclass[a4paper, 11pt,notoc]{article}
+\documentclass[a4paper, 11pt]{article}
 \pdfoutput=1
 \usepackage{jcappub}
+% KP comment out the line below to get the table of contents back
+\notoc{}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{verbatim}
@@ -198,33 +200,15 @@
 \hfill CERN-LPCC-2020-XX
 
 \abstract{
-Dark matter is one of the main science drivers of the particle and astroparticle physics community.  Determining the nature of dark matter will require a broad approach, with a range of experiments pursuing different experimental hypotheses. As one axis of this search program, collider experiments provide insight on dark matter complementary to searches in direct/indirect detection experiments and to astrophysical evidence.
+Dark matter is one of the main science drivers of the particle and astroparticle physics community.  Determining the nature of dark matter will require a broad approach, with a range of experiments pursuing different experimental hypotheses. As one axis of this search program, collider experiments provide insight on dark matter which are complementary to searches in direct/indirect detection experiments and to astrophysical evidence.
+In order to compare results from a wide variety of experiments, a common theoretical framework is required. The ATLAS and CMS experiments at the Large Hadron Collider have adopted a series of simplified dark matter models for their searches which introduce two new particles, a dark matter particle and a mediator. The interaction strength in these simplified models is set by the couplings of the mediator to dark matter and to SM particles. 
 
-In order to compare results from a wide variety of experiments, a common theoretical framework is required. Among the numerous theoretical frameworks that describe dark matter (see e.g.~\cite{doi:10.1146/annurev-astro-082708-101659}, and \cite{Kahlhoefer:2017dnp,doi:10.1146/annurev-nucl-101917-021008} for collider-focused reviews), the ATLAS and CMS experiments at the Large Hadron Collider have adopted a series of simplified models that include dark matter particles as benchmarks for their searches.
-
-In these models, the interaction between Standard Model (SM) and dark matter particles is mediated by a new particle, called a mediator. The interaction strength is controlled by the couplings of the mediator to dark matter and to SM particles. 
-
-So far, the presentation of LHC results (as well as the presentation of projections of future hadron collider experiments) has focused on four benchmark scenarios with different choices of couplings to quarks and leptons, as recommended by the Dark Matter Working Group~\cite{BOVEIA2020100365, ALBERT2019100377}.
-
-In this work, we describe methods to extend those four benchmark scenarios to scenarios with arbitrary couplings, and release the corresponding code for use in further studies and projections of collider dark matter searches in the framework of simplified models. This will extend the applicability of the comparisons of collider searches to accelerator experiments that are sensitive to smaller couplings, and give a more complete picture of the coupling dependence of the sensitivity of dark matter collider searches when compared to direct and indirect detection searches. By using semi-analytical methods to model the dependence, we plan to drastically reduce the need for computing resources relative to traditional approaches based on the generation of additional simulated signal samples.
-
-We focus here on s-channel DM simplified models where the mediator particle has vector or axial-vector couplings to DM and SM particles. This work will cover collider searches for visible decays of the mediator particles, as well as for searches targeting the invisible particles via the associated production of one or more SM particles~\cite{ATL-PHYS-PUB-2020-021,CMSSummary}.
-}  
+So far, the presentation of LHC results, as well as of projections of future hadron collider experiments, has focused on four benchmark scenarios within these simplified models with specific coupling values. In this work, we describe methods to extend those four benchmark scenarios to arbitrary couplings, and release the corresponding code for use in further studies. This will extend the applicability of the comparisons of collider searches to accelerator experiments that are sensitive to smaller couplings, and give a more complete picture of the coupling dependence of the sensitivity of dark matter collider searches when compared to direct and indirect detection searches. By using semi-analytical methods to model the dependence, we drastically reduce the computing resources needed relative to traditional approaches based on the generation of additional simulated signal samples. We focus here on s-channel DM simplified models where the mediator particle has vector or axial-vector couplings to DM and SM particles. This work will cover collider searches for both visible decays of the mediator particles and invisible decays with the associated production of one or more SM particles.
+} 
 
 \maketitle
 
-%\newpage 
-
-
 \vskip10pt
-
-
-%\bibliography{CouplingScan-whitepaper}
-%\bibliographystyle{JHEP}
-
-%\end{document}
-
-%Here ends the LOI version
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -233,23 +217,25 @@ We focus here on s-channel DM simplified models where the mediator particle has 
 \section{Introduction}
 \label{sec:introduction}
 
-The search for new particles belonging to dark sectors is one of the primary focuses of the particle physics community, both at dedicated dark matter search experiments and at colliders. The ATLAS and CMS collaborations have focused Since the establishment by the LHC Dark Matter Working Group of a specific set of simplified models in 20XX, ATLAS and CMS have used these models as the basis for many of their statements on dark matter exclusions. These simplified models, while they are only one framework for interpreting dark matter limits and should be complemented by e.g. 2HDM+a and SUSY based models, serve an important purpose by \ldots
+The nature of dark matter is one of the most compelling open questions confronting physics today. Across the particle and astroparticle physics communities, a wide range of experiments are attempting to observe and characterise dark matter (DM) and understand what its relationship to the Standard Model (SM) may be. The range of possibilities for the nature of DM and its interactions is vast (see ~\cite{doi:10.1146/annurev-astro-082708-101659} for a review) and as a result, the experimental scope is similarly enormous and the approaches taken highly varied. One important experimental direction is the search for dark matter production at colliders~\cite{Kahlhoefer:2017dnp,doi:10.1146/annurev-nucl-101917-021008}.
 
-% Nice paragraph on complementarity and how this will let us probe it
+To understand how all the different experiments across different areas of physics complement one another in their collective search for DM, a common set of benchmarks for the presentation of results is required. The complementarity between experimental frontiers is both highly important and difficult to capture. Indirect detection, direct detection, and collider experiments each have unique strengths in particular areas of the space of possible dark matter masses and models. To fully explore this space, understand what is covered experimentally, and identify gaps in the broader experimental program, common frameworks have to be defined in which exclusion limits from current and future experiments can be visualised together. This contextualisation requires that the models in which the various experiments interpret their results can be meaningfully compared.
 
-The goal of this paper is to establish techniques for converting analysis limits computed in the context of one set of simplified model parameters into any other desired set of model parameters, with reasonable accuracy and without resorting to generating events. This will allow 
+The ATLAS and CMS collaborations produce a vast array of searches which can be interpreted in DM contexts, including final states that correspond to supersymmetric, 2HDM+a, and complicated dark sector models. These specific interpretations make powerful statements about the theories in question but are difficult to compare to one another and to results from other fields. To provide a common framework that would allow for broader interpretation of ATLAS and CMS DM results, the LHC Dark Matter working group established a specific set of simplified models which the two collaborations have used as the basis for many of their summarised DM results throughout the LHC Run 2~\cite{ABERCROMBIE2020100371}. In addition to the simplified models themselves, a smaller set of specific benchmarks with fixed coupling values was established, allowing for clear comparisons between and within the LHC experiments~\cite{BOVEIA2020100365,ALBERT2019100377,ATL-PHYS-PUB-2020-021,CMSSummary}.
 
+There are contexts, however, in which these benchmark scenarios are not as flexible as an optimal comparison would require. For example, limits at future colliders are more interesting for smaller couplings than are limits at the LHC, low-mass experiments often present results for dark photon models that don't align clearly with any of the current LHC DM benchmarks, and LHC limits reframed in terms of DM-nucleon interaction cross section can vary dramatically with coupling choices in a way which is not fully captured by the existing benchmarks alone.
 
+Historically, reinterpreting ATLAS and CMS analysis limits for a new set of couplings within the simplified model framework required generating new Monte Carlo signal simulations and re-running the statistical analysis. This made testing more than a handful of scenarios prohibitive. But for two signals with the same physical signature in the detector and differing only by cross section, the limit set on one signal can be reinterpreted as a limit on the other by direct rescaling, as long as the ratio between the cross sections of the two signals is known. Having reliable analytical approximations for the cross sections of the simplified models relative to each other will then enable analyses to begin from a single limit in one set of couplings and rescale to any other, as long as the original result includes sufficient information. The result is sufficiently informative if provides the strength of the limits, i.e. the ratio between observed limit and theoretical prediction rather than just whether a given point is excluded or not, and includes or can interpolate physically representative points for every point to which it will be rescaled.
 
-While the techniques shown here are extendable to lepton colliders, they have only so far been developed in the context of hadron colliders. All results presented today are based on LHC limits, and the software published in conjunction with this paper currently only serves hadronic initial states. 
+This paper presents formulas and methodology enabling rescaling for two of the standard DM simplified models used by ATLAS and CMS with reasonable accuracy and without resorting to generating events. The rescaling formulas are valid for any hadron collider and are based on leading order cross sections for the production of the most important final states for these models. The derivation and validation of the rescaling methods are given here. The code package developed to streamline the application of these techniques can be found in GitHub \href{https://github.com/LHC-DMWG/DMWG-couplingScan-code}{here} and will be fully documented and publicly released alongside the eventual publication of this document by the LHC Dark Matter Working Group. {\color{red} add something about relic density calculations/plots here}
 
-Note on how this is for Snowmass and a follow-up version will be submitted for publication; it will contain fully documented and supported code package. For now, code is available on Github here.
+To briefly summarise what is not included in this framework: certain of the LHC simplified models are not currently supported (see Section~\ref{sec:models}), limit rescaling for lepton colliders is not currently supported, and both analysis acceptances and $k$-factors are treated as constant by the rescaling (see Section~\ref{sec:assumptions}). The first two elements can be added in the future by extensions to the current work if there is sufficient interest from the community. The third, treatment of acceptances and $k$-factors, must be considered on an individual basis by analysers.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Models considered}
 \label{sec:models}
 
-The models considered in this study are detailed extensively in Refs.~\cite{ABERCROMBIE2020100371,Albert:2017onk}. Each simplified model adds two new particles beyond the Standard Model: a Dirac fermion dark matter particle $\chi$ and an $s$-channel mediator particle. This mediator can be spin-1, in which case its couplings can be either vector or axial-vector in nature, or spin-0, in which case its couplings are scalar or pseudo-scalar. This Snowmass paper draft only provides rescaling formulas for the models with vector or axial-vector mediators. For resonant final states like dijet and dilepton, there is no strong motivation to extend the rescaling methods developed here, this since these final states do not provide a strong constraint on scalar and pseudoscalar models. For invisible final states it would indeed be very useful, however the different leading order processes in these models mean that a similar approach to rescaling couplings will require separate derivation.  This will be left as a project for a future paper. Further discussion of the models here will therefore focus only on the vector and axial-vector scenarios.
+The models considered in this study are detailed extensively in Refs.~\cite{ABERCROMBIE2020100371,ALBERT2019100377}. Each simplified model adds two new particles beyond the Standard Model: a Dirac fermion dark matter particle $\chi$ and an $s$-channel mediator particle. This mediator can be spin-1, in which case its couplings can be either vector or axial-vector in nature, or spin-0, in which case its couplings are scalar or pseudo-scalar. This Snowmass paper draft only provides rescaling formulas for the models with vector or axial-vector mediators. For resonant final states like dijet and dilepton, there is no strong motivation to extend the rescaling methods developed here, this since these final states do not provide a strong constraint on scalar and pseudoscalar models. For invisible final states it would indeed be very useful, however the different leading order processes in these models mean that a similar approach to rescaling couplings will require separate derivation.  This will be left as a project for a future paper. Further discussion of the models here will therefore focus only on the vector and axial-vector scenarios.
 
 % Talk about couplings independence, what can be set, what vertices we have
 The coupling of the vector and axial-vector mediators to Standard Model particles is generally treated as  This leads to a model fully defined by five free parameters: the mediator mass \mMed, the dark matter particle mass \mDM, the coupling strength of a vertex between the mediator and two dark matter particles \gdm, a single universal coupling between the mediator and Standard Model quarks \gq, and a single universal coupling between the mediator and Standard Model leptons \gl. For lighter mediator masses, decays into heavy quarks or leptons will be kinematically forbidden, but the coupling is always taken to be constant for all fermion generations.
@@ -257,8 +243,12 @@ The coupling of the vector and axial-vector mediators to Standard Model particle
 % Mention leading order diagrams and our key analyses.
 The leading order processes for 
 
-% Mention relevance of going to NLO for real limits but possibility of rescaling at LO - check that out, but our calculations here are tree-level
+\section{Assumptions and caveats}
+\label{sec:assumptions}
 
+% Importance of going to NLO for real limits but possibility of rescaling at LO - check that out, but our calculations here are tree-level
+
+% Also talk about widths and acceptances
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resonant final states}
@@ -335,13 +325,13 @@ The method developed here keeps these same assumptions, producing a re-scaling b
 The semi-analytical rescaling method developed here for \metplusx signatures has two separate components. One can be used to rescale a source scenario to another set of couplings within the same overall model, while the other should be used when the source scenario in one model is rescaled to a target in a different model (e.g. vector mediator to axial-vector mediator).
 
 % Cite original paper saying approximations have been given before for scaling on and off-shell, but that we make the simple extension of considering the integral of the entire propagator.
-In the original whitepaper defining the simplified models studied here, it is specified that the cross section scaling can be estimated using the integral of the Breit-Wigner propagator for the mediator~\cite{Abercrombie:2015wmb}. Several approximations of this integral are given, corresponding to the different regimes of on-shell mediators, off-shell mediators, and effective field theories. In order to smoothly handle the on-shell to off-shell transition, we instead use the full integral of the propagator over the permitted phase space $s \geq 4 \mDM^2$:
+In the original whitepaper defining the simplified models studied here, it is specified that the cross section scaling can be estimated using the integral of the Breit-Wigner propagator for the mediator~\cite{ABERCROMBIE2020100371}. Several approximations of this integral are given, corresponding to the different regimes of on-shell mediators, off-shell mediators, and effective field theories. In order to smoothly handle the on-shell to off-shell transition, we instead use the full integral of the propagator over the permitted phase space $s \geq 4 \mDM^2$:
 \begin{align}
 \mathcal{I}_{\text{prop}} =&\  g_q^2 g_\chi^2 \int_{4\mDM^2}^{\infty} \frac{ds}{(s-\mMed^2)^2+\mMed^2\Gamma^2} \\
 =&\  \frac{g_q^2 g_\chi^2}{\Gamma\mMed} \left(\frac{\pi}{2} + \arctan{\left(\frac{\mMed^2 - 4 \mDM^2}{\Gamma\mMed}\right)} \right)\,.
 \end{align}
 % Within a single model: integral of the propagator as sufficient for demonstrating scaling
-Coupling dependence comes not only from the explicit $g_q^2 g_\chi^2$ factor but is also embedded in the value of $\Gamma$ (see width definitions in Ref.~\cite{Albert:2017onk}).
+Coupling dependence comes not only from the explicit $g_q^2 g_\chi^2$ factor but is also embedded in the value of $\Gamma$ (see width definitions in Ref.~\cite{ALBERT2019100377}).
 $\mathcal{I}_{\text{prop}}$ is easily analytically calculable and the ratio of its value for two different coupling scenarios at a given \mDM and \mMed provides a robust estimate of the cross section in the target scenario, so long as both assume the same mediator type.
 
 % Show example
@@ -425,7 +415,7 @@ Would like to show a full summary plot with 36 ifb results from a variety of cha
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Relic densities and their relationships to couplings in DM simplified models}
+\section{Relic densities in DM simplified models}
 
 {\color{red}Put cool plots from Phil here}
 
