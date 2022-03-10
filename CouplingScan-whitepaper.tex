@@ -3,16 +3,35 @@
 \usepackage{jcappub}
 % KP comment out the line below to get the table of contents back
 \notoc{}
+
+% KP test
+\usepackage{feynmp-auto}
+% before setting default graphics include widths, save the default to properly scale feynman diagrams with their labels
+\makeatletter
+\let\ginnatwidth\Gin@nat@width
+\let\ginnatheight\Gin@nat@height
+\makeatother
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+%if you don't use the feynmandiagram environment for feynmf/mp figures, and you've changed the Gin keys above, then you need to manually adjust the unit length for feynman diagrams to get ratio of tex labels to graphics right. \unitlength = 1.21mm for tufte \linewidth and \textheight
+\DeclareGraphicsRule{*}{mps}{*}{}
+\newenvironment{feynmandiagram}[1][]{\setkeys{Gin}{width=\ginnatwidth,totalheight=\ginnatheight}\begin{fmffile}{#1}
+\begin{fmfgraph*}(100,70)\fmfpen{thick}}{\end{fmfgraph*}\end{fmffile}\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}}
+% end feynman diagram setup
+
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{verbatim}
-\usepackage{caption}
+%\usepackage{caption} 
 \usepackage{xspace}
 \usepackage{hyperref}
 \usepackage{multirow}
 \usepackage{placeins}
 \usepackage{array}
 \usepackage{subcaption}
+
+% KP test
+\DeclareGraphicsRule{*}{mps}{*}{}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
 
 % Variables
 \newcommand{\sigv}{\ensuremath{\langle \sigma v_{\rm{rel}} \rangle}\xspace}
@@ -239,21 +258,73 @@ The simplified models considered in this study are detailed extensively in Refs.
 
 Each model introduces two types of new vertex: a vertex between the mediator and a pair of DM particles, and a vertex between the mediator and a pair of SM fermions. There is no interaction between the mediator and SM bosons, and no interaction between the DM particle and any particle other than the mediator. The strength of the interactions at each vertex is governed by a coupling $g$. ATLAS and CMS treat the mediator-SM interactions as having a single universal coupling strength \gq for all mediator-quark interactions and a single universal coupling strength \gl for all mediator-lepton interactions, including neutrinos. Mediators with smaller masses will be kinematically forbidden from decaying into heavy quarks or leptons, but the coupling is still taken to be constant for all fermion generations. For vector and axial-vector mediators, this leads to truly universal quark and lepton couplings. For scalar and pseudoscalar mediators, the fermion couplings are proportional to the SM Higgs couplings, but the where the overall relative strengths of the quark and lepton coupling types are scaled by \gq and \gl. No Higgs mixing is included in the spin-0 simplified models. These choices mean that the four simplified models are in fact fully defined by five free parameters: the mediator mass \mMed, the dark matter particle mass \mDM, the coupling strength between the mediator and DM particles \gdm, and the two mediator-SM universal coupling strengths \gq and \gl. In this paper, we will refer to different sets of coupling values within the same model  as different scenarios.
 
-As mentioned in the Introduction, the rescaling methods presented here are computed using leading-order approximations for the cross sections of the key processes. For vector and axial-vector mediators, the relevant processes are resonant SM particle pair production, with or without accompanying initial state radiation (ISR), and invisible decay of a mediator in the presence of ISR leading to a final state of a single SM particle and significant missing energy % TODO ADD DIAGRAMS.
+The rescaling methods presented here are computed using leading-order approximations for the cross sections of the key processes. For vector and axial-vector mediators, the relevant processes are resonant SM particle pair production, with or without accompanying initial state radiation (ISR), and invisible decay of a mediator in the presence of ISR leading to a final state of a single SM particle and significant missing energy. Examples of these processes, a dijet and a monojet scenario, are illustrated in Fig.~\ref{fig:diagrams}. Decays of the mediator to leptons, or the presence of an ISR particle (jet, photon, etc), also provide visible signatures with significant exclusion power; mono-photon or other mono-boson analyses are also relevant invisible signatures. However, in all such cases, the change in cross section due to a variation in the DM model or scenario studied can be estimated from the core $qq\rightarrow \text{med} \rightarrow f \bar{f}$ or $qq\rightarrow \text{med} \rightarrow \chi \bar{\chi}$ process; the effect of an ISR particle cancels out in the cross section ratio used for rescaling.
 
-%This Snowmass paper draft only provides rescaling formulas for the models with vector or axial-vector mediators. For resonant final states like dijet and dilepton, there is no strong motivation to extend the rescaling methods developed here, this since these final states do not provide a strong constraint on scalar and pseudoscalar models. For invisible final states it would indeed be very useful, however the different leading order processes in these models mean that a similar approach to rescaling couplings will require separate derivation.  This will be left as a project for a future paper. Further discussion of the models here will therefore focus only on the vector and axial-vector scenarios.
+\begin{figure}[h!]
+  \begin{center}
+  \unitlength=0.005\textwidth
+  \vspace{\baselineskip}
+  \begin{subfigure}[b]{0.45\textwidth}    
+  \begin{feynmandiagram}[av-dijet]
+    \fmfleft{i1,i2}
+    \fmfright{o1,o2}
+    \fmf{wiggly,tension=0.6,label={\Large $V,,A\text{-}V$}}{v1,v2}
+    \fmf{fermion,tension=0.6}{o2,v2,o1}
+    \fmf{fermion,tension=0.6}{i2,v1,i1}
+    \fmfdot{v1,v2}
+    \fmflabel{\Large ${g_q}$}{v1}
+    \fmflabel{\Large ${g_q}$}{v2}
+    \fmflabel{\Large ${\bar{q}}$}{i1}
+    \fmflabel{\Large ${q}$}{i2}
+    \fmflabel{\Large ${\bar{q}}$}{o1}
+    \fmflabel{\Large ${q}$}{o2}
+  \end{feynmandiagram}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}    
+  \begin{feynmandiagram}[av-monojet]
+    \fmfleft{i1,i2}
+    \fmfright{o1,o2}
+    \fmftop{isr}
+    \fmfbottom{pisr}
+    \fmf{wiggly,tension=0.6,label={\Large $V,,A\text{-}V$}}{v1,v2}
+    \fmf{fermion,tension=0.6}{o2,v2,o1}
+    \fmf{fermion}{i2,visr,v1}
+    \fmf{plain}{v1,pvisr,i1}
+    \fmf{fermion,tension=0}{v1,i1}
+    \fmfdot{v1,v2}
+    \fmflabel{\Large ${g_q}$}{v1}
+    \fmflabel{\Large ${g_{DM}}$}{v2}
+    \fmflabel{\Large ${\bar{q}}$}{i1}
+    \fmflabel{\Large ${q}$}{i2}
+    \fmflabel{\Large ${\bar{\chi}}$}{o1}
+    \fmflabel{\Large ${\chi}$}{o2}
+    \fmf{gluon,tension=0}{visr,isr}
+    \fmf{phantom,tension=0}{pvisr,pisr}
+    \fmflabel{\Large ${g}$}{isr}
+  \end{feynmandiagram}
+  \end{subfigure}  
+\vspace{\baselineskip}  
+\caption[\baselineskip]{Representative Feynman diagrams for leading-order processes with a vector or axial-vector $s$-channel mediator. The visible decay mode (left) uses a dijet final state as an example. The invisible decay mode (right) uses a monojet final state as an example. }
+\label{fig:diagrams}
+  \vspace{0.5\baselineskip}
+\end{center}
+\end{figure}
 
+For scalar and pseudoscalar mediators, the leading order DM or SM production diagrams are significantly more complex and additional signatures like $bb+\MET$ become important. For this reason, although similar rescaling formulas could be computed for the scalar and pseudoscalar models, they are beyond the scope of the present paper. Rescaling options presented here will therefore focus only on the vector and axial-vector models. Any readers interested in using or helping to develop scalar/pseudoscalar rescaling are invited to contact the authors.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Assumptions and caveats}
 \label{sec:assumptions}
 
 % Importance of going to NLO for real limits but possibility of rescaling at LO - check that out, but our calculations here are tree-level
+Although the rescaling formulae are based on the leading order cross section calculations for the visible and invisible final states, experimental results should still be reported at next-to-leading order (NLO). This can be reasonably approximated in many cases by multiplying an original exclusion limit calculated at NLO by the LO/LO cross section scale factor computed using the methods here. The assumption involved is that the $k$-factors are unchanged between the start and end points of the rescaling. For example, for the same (\mMed, \mDM) point in an axial model with couplings $g_{a,b,c}$ being rescaled to a vector model with couplings $g_{e,f,g}$, as long as the $k$-factors at these points are the same in the two models and scenarios, a rescaled NLO limit at (\mMed, \mDM) will be NLO also. Similarly, if a visible final state limit defined as a function of \mMed alone is used to extract limits with various \mDM, it is assumed that the $k$-factor at (\mMed, \mDM) is the same as the $k$-factor at (\mMed, $m_{\chi}^{\prime}$) within the model and scenario being studied. This assumption should be checked by the user at a few representative points using an NLO Monte Carlo simulation. If the $k$-factors are found to be inconsistent, a correction should be derived and applied or the bounds of the rescaling adjusted to remove the inconsistent points.
 
 % Also talk about widths and acceptances
+A second assumption of the rescaling method is that the effects of a signal on an analysis result are constant across the start and end points of a rescaling, less the effect of the cross section. Therefore a limit calculated for a signal point with a particular acceptance should not be rescaled to act as a limit on a signal point with very different acceptance, and a resonance search which is sensitive to the peak shape of a signal should reinterpret points only to signals with a similar peak shape. For \metplusx analyses, the acceptance is not overly sensitive to model parameters, but much like the $k$-factor assumption, the \MET for a few representative points towards the extremes of the rescaling should be checked to ensure the acceptance will not change meaningfully. For resonant final states, the relevant parameter is the mediator's intrinsic width. For intrinsic width to mass ratios significantly smaller than the analysis resolution, variations in the mediator width as couplings are modified will have little effect, but when the analysis resolution is quite good or the signals become wider, the effects can be non-negligible. To account for this, the maximum intrinsic width to which a given limit is valid should be specified by the analyser, and the rescaling will not be applied for points outside this value. To support analyses like dilepton where the resolution is excellent, the rescaling code has been developed to support an input range of observed resonant limits applicable for different mediator widths, up to the maximum width limit provided. Details of this can be found in Section~\ref{subsec:dilepton}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Resonant final states}
+\section{Rescaling resonant final states}
 \label{sec:resonant}
 
 Why we can start from 1D limit here: tie it into physical signature. Mention that math worked out in this section assumes you have negligible sensitivity to intrinsic width; see next section for otherwise.
@@ -270,9 +341,11 @@ Can interpret across couplings, since changing couplings changes cross sections 
 
 Approach: change cross section of signal as long as it stays within bounds where the experimental limit for such a model would be the same, or is otherwise known. That is, shape and/or acceptance do not change outside the bounds of what we have experimental results to cover. In this case, can rescale the exclusion depth by the ratio of theoretical cross sections for the scenario in which the limit plot was made and the scenario in which you wish to interpret it. We use a range of approximations for those cross sections depending on 
 
-Comment on assumptions here? Probably?
 
 \subsection{Dijet and dijet+X}
+\label{subsec:dijet}
+
+Comment on analysis responsibility for setting largest reasonable width. But basically say we are starting the discussion with a scenario where a single observed limit curve satisfactorily represents all the couplings we're interested in checking. In cases where the mass resolution is small relative to the intrinsic widths probed, and so a single observed limit is not sufficient, a modified technique can be applied as described in Section~\ref{sec:dilepton}. 
 
 
 % Goal: begin from standard final plot, and/or g	q plot.
@@ -283,16 +356,12 @@ Comment on assumptions here? Probably?
 
 % How pt 2: rescaling the 2d limit (super easy)
 
-% Assumptions: no change in acceptance across those points. And narrow width (inbuilt in approximation, comment). K-factor? Or is this order-independent?
-The primary assumption required by this approach is that the analysis acceptance is constant for a single mediator mass, regardless of dark matter mass and coupling choices. This assumption is reasonable so long as the intrinsic width of the mediator is narrower than the analysis mass resolution, but should be checked for each analysis and the boundaries of its validity well understood. In cases where the mass resolution is good and this assumption cannot be fairly made, e.g. dilepton final states, a modified technique can be applied as described in Section~\ref{sec:dilepton}. 
-
-Two additional assumptions are also required. First, the mediator must have a sufficiently narrow intrinsic width that [....]. {\color{red} can we quantify when this fails? Likely safe given that it falls inside the previous assumption, but still....}. Second, the $k$-factors are assumed to be equal at all points independent of DM mass and of coupling for a given mediator mass.
 
 % Illustrate with a plot? Could show from the one CMS one that hasn't been interpreted yet, that I can get a good mediator plot using non-gdm=0 starting?
  
 
 \subsection{Dilepton and other high-resolution resonances}
-\label{sec:dilepton}
+\label{subsec:dilepton}
 
 % CMS dilepton already doing this https://arxiv.org/pdf/1803.06292.pdf, could show something from it as an example
 
@@ -305,7 +374,7 @@ There are several possible ways to approach points with widths in between the pr
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Mono-$X$ final states}
+\section{Rescaling \metplusx final states}
 \label{sec:monox}
 
 % Why mono-x signatures need to contend with off-shell scenarios and thus cannot use the same approximations
