@@ -353,6 +353,7 @@ Regardless of starting point, the goal is to produce an estimate of the \textit{
 % Approximate cross section? On-shell approximation from original paper tells us that we can approximate sigma as ΓiΓf/Γtot for on-shell mediators. In visible final state, we are always on-shell as long as we have any light quarks or leptons to decay to, and all at-all-relevant mediator masses have this. So the on-shell approximation is valid everywhere. And width formulas are already well known for these models. So we can make an approximate cross section - only for comparison to other approximated, not real, cross sections but sufficient for all rescalings, of sigma_{somelabel} \sim widths.
 This requires a good approximation of the cross section for the processes in question. Fortunately, these resonant processes will be on-shell everywhere. For any \mMed of interest, in these visible final states, there will always be quarks or leptons with $m_f < 2\,\mMed$ into which the mediator can decay. Therefore this simple on-shell approximation can be applied for all points:
 \begin{equation}
+\label{eq:brrescaling}
 \tilde{\sigma} \sim \frac{\Gamma_i\Gamma_f}{\Gamma_\text{tot}}\,,
 \end{equation}
 where $\Gamma_i$ and $\Gamma_f$ are the partial widths of the initial and final states respectively and $\Gamma_\text{tot}$ is the total intrinsic width of the mediator. This quantity is easy to compute since formulas for the partial widths are well-known in these models~\cite{ALBERT2019100377}.
@@ -374,27 +375,27 @@ When instead beginning from a limit on $g_q$ as a function of \mMed, the exclusi
 \begin{equation}
 d_\text{ex}^\prime = (\frac{g_{q,\text{lim}}}{g_{q,th}})^2 \frac{\tilde{\sigma}}{\tilde{\sigma}^\prime}\,,
 \end{equation}
-where $g_{q,th}$ and $\tilde{\sigma}$ are defined for a theory curve which, combined with a matching observed limit curve, would result in the input $g_q$ limit. These are not defined as there is no input cross section curve, but their effect in fact cancels out: $\tilde{\sigma} \propto g_q^2$ for dijets and so selecting any arbitrary $g_q$ and evaluating $\tilde{\sigma}$ at the same will produce the same result. For convenience, we choose unity. Then:
+where $g_{q,th}$ and $\tilde{\sigma}$ are defined for a theory curve which, combined with a matching observed limit curve, would result in the input $g_q$ limit. These are not defined as there is no input cross section curve, but their effect in fact cancels out: $\tilde{\sigma} \propto g_q^2$ for dijets and so selecting any arbitrary $g_q$ and evaluating $\tilde{\sigma}$ at the same will produce the same result. For convenience, we choose unity. Then using a $g_q$ limit at a hadron collider:
 % - But we know d_ex' = d_ex * sigmatilde/sigmatilde' -> d_ex' = (g_lim/g_inputplot)^2 * (sigmatilde/sigmatilde') 
 % - We have g_lim and know sigmatilde' for the goal state. g_inputplot and sigmatilde are not defined because we have no g_q initial - but it cancels out, can use whatever we want. Use 1 for convenience. Then:
 % - d_ex' = (g_lim)^2 * (sigmatilde|1)/(sigmatilde') -> or equivalent for dilepton.
 \begin{equation}
-d_\text{ex}^\prime = g^2_\text{lim} (\frac{\tilde{\sigma}(g_q=1)}{\tilde{\sigma}^\prime})\,,
+d_\text{ex}^\prime = g^2_{q,\text{lim}} (\frac{\tilde{\sigma}(g_q=1)}{\tilde{\sigma}^\prime})\,,
 \end{equation}
-all of which quantities can be calculated for a grid of (\mMed, \mdm) values from the one input curve. The dilepton equivalent is % TODO
-
+all of which quantities can be calculated for a grid of (\mMed, \mdm) values from the one input curve. The equivalent exclusion depth extracted from a $g_l$ limit at a hadron collider with fixed $g_q$ is:
+\begin{equation}
+d_\text{ex}^\prime = g_{l,\text{lim}} (\frac{\tilde{\sigma}(g_l=1)}{\tilde{\sigma}^\prime})\,.
+\end{equation}
 
 % Second step is to be able to rescale between 2d limit in one model & scenario to any other model and scenario. But with exclusion depth already known at each target point in 2D plane, this is as simple as sigmatilde/sigmatilde' * d_ex.
+Once one of the above formulas has been used to calculate $d_\text{ex}^\prime$ at each point of interest in the mass-mass plane for a single model and coupling scenario, the next step is to rescale to any other scenario or model of interest. This is achieved through multiplying the exclusion depth by a simple factor of $\tilde{\sigma}/\tilde{\sigma}^\prime$, where $\tilde{\sigma}$ is computed using Eq.~\ref{eq:brrescaling} for the set of couplings of the scenario from which to begin and $\tilde{\sigma}^\prime$ is in the target scenario.
 % Does this hold between models? Yes.
 % Factors that differ between V and A-V are included in formulas for widths. Therefore it is possible to just rescale any one point by ratio of this cross section from the branching ratios and arrive at valid exclusion.
+Since the expressions for the partial widths include the factors that differ between vector and axial-vector couplings, these differences are included in the calculation and the simple $\tilde{\sigma}/\tilde{\sigma}^\prime$ rescaling can be used to convert between the two models. Note that since the dijet and dilepton resonant final states and their variants do not provide strong constraints on scalar and pseudoscalar models, where other final states are dominant. Conversion between vector and axial-vector as well as across couplings within each model therefore covers the full space of interesting rescaling possibilities for these two models.
+
 % Only remaining subtlety is correct handling of varying widths, where applicable. Start with simple example case where it isn't, then show where it is.
 % Note examples are taken from CMS where this technique has been in use for some time and all summary plots in Run 2 have used it. Recently began to be used in ATLAS. Technique is being documented here for public clarity.
-
-% Old stuff below
-Point to cross-section-mass plot. Exclusion depth is obs/theory - thus in 1D exclusion limit is where the two cross. For mass-mass plots this depth exists in 2D plane and what we want is twofold: find it from inputs that are standardly produced by analysis teams and 2) rescale it analytically to other couplings etc.
-
-Approach: change cross section of signal as long as it stays within bounds where the experimental limit for such a model would be the same, or is otherwise known. That is, shape and/or acceptance do not change outside the bounds of what we have experimental results to cover. In this case, can rescale the exclusion depth by the ratio of theoretical cross sections for the scenario in which the limit plot was made and the scenario in which you wish to interpret it. We use a range of approximations for those cross sections depending on 
-
+The rescaling method discussed here for resonant final states was developed by CMS collaborators and has been used to present the dijet and dilepton limits in the CMS summary plots since the beginning of Run 2. It is being documented here for public clarity. It has been more recently adopted in ATLAS for the presentation of their limit summaries. This paper makes one small extension on the well-established rescaling technique by enabling limits to be extracted from $g_q$ limits as a function of mass regardless of whether \mdm is taken to be decoupled or light. An example demonstrating this new feature will be given in the following section.
 
 \subsection{Dijet and dijet+X}
 \label{subsec:dijet}
@@ -404,15 +405,6 @@ Approach: change cross section of signal as long as it stays within bounds where
 % In code package provided, set a maximum width to which limits are considered valid. Points with greater widths will not return rescaled limits. This prevents accidental application of limits beyond appropriate boundaries.
 
 Comment on analysis responsibility for setting largest reasonable width. But basically say we are starting the discussion with a scenario where a single observed limit curve satisfactorily represents all the couplings we're interested in checking. In cases where the mass resolution is small relative to the intrinsic widths probed, and so a single observed limit is not sufficient, a modified technique can be applied as described in Section~\ref{sec:dilepton}. 
-
-
-% Goal: begin from standard final plot, and/or g	q plot.
-
-% On-shell decay to quarks is possible everywhere, so we can use on-shell approximations everywhere. At tree level just the one diagram with two quark couplings. Explain how ISR factors out so it will work fine for dijet+ISR too.
-
-% How pt 1: cross section limit to 2d limit
-
-% How pt 2: rescaling the 2d limit (super easy)
 
 
 % Illustrate with a plot? Could show from the one CMS one that hasn't been interpreted yet, that I can get a good mediator plot using non-gdm=0 starting?
