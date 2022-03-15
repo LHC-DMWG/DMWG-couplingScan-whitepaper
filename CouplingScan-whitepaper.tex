@@ -402,13 +402,31 @@ The rescaling method discussed here for resonant final states was developed by C
 
 % Dijet section
 % Simplest example is where experimental resolution is >> mass resolution of analysis for all relevant widths. This is common for dijet search where you can get up to .... Here showing example from CMS X, where the reinterpretation techniques in this paper were used to produce mass-mass exclusion curve. Small extension of technique in this paper allows for interpretation starting from limits that don't have DM decoupled. Validation plots show that compatible limits are obtained using methods here from both starting points.
+The simplest example of resonant limit rescaling is for an analysis when the intrinsic mediator width-to-mass ratio is smaller than or comparable to the experimental mass resolution. This is common for dijet analyses where the mass resolution is on the order of 4\% at $\mMed = 1$ TeV and 3\% at $\mMed = 2$ TeV~\cite{dijetISR,dijet139_atlas}. The rescaling methods derived in Section~\ref{sec:resonant} are illustrated in using the results of the CMS dijet analysis in 36 \ifb of data~\cite{CMS:2018mgb}. Since CMS has been using these resonance search rescaling methods for some time, the mass-mass exclusion limits presented in that paper are already derived using the procedures given here and beginning from the limit on $g_q$ as a function of \mMed with no coupling to dark matter. To both validate the software package we release with this paper and introduce its capacity for rescaling from cross-section or $g_q$ limits without decoupled dark matter, Figure~\ref{fig:br_scaling} shows that the same mass-mass limits can be obtained beginning from the cross-section limit and theory curve corresponding to $g_q = 0.25$, $g_\chi=1.0$, \mdm$= 1$ GeV instead. The observed limit on $\sigma \times B \times A$ is taken from the public data while the theory curve is visually extracted from the limit plot.
+
+% Illustrate with a plot
+%-----------------------------------
+\begin{figure}[htp!]
+  \begin{center}
+  \begin{subfigure}[b]{0.49\textwidth}  
+    \includegraphics[width=\textwidth]{figures/dijet/}
+    \caption{}
+    \label{subfig:dijet_A1}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\textwidth}  
+    \includegraphics[width=\textwidth]{figures/dijet/}
+    \caption{}
+    \label{subfig:dijet_V1}  
+  \end{subfigure}
+  \caption{Exclusion contours in the (\mMed, \mdm) plane for axial-vector mediators (\subref{subfig:dijet_A1}) and vector mediators (\subref{subfig:dijet_V1}) with couplings of $g_q=0.25, g_\chi=1.0, g_l = 0.0$ using the CMS dijet analysis results. The shape of this exclusion surface and is shown as a blue gradient. The solid red curves correspond to the published CMS results in these planes computed using the rescaling methods discussed here and beginning from the limit on $g_q$ as a function of mass for a mediator with no coupling to dark matter. The solid white curves correspond to the result derived using the rescaling methods discussed here and beginning from the observed limit on $\sigma \times B \times A$ as a function of \mMed and the corresponding theoretical prediction for a mediator with coupling $g_\chi=1$ and a dark matter particle with mass $\mdm = 1$ GeV. The level of agreement between the two contours is a measure of the similarity in performance between the rescaling procedures beginning from these two different initial limits.}
+  \label{fig:br_scaling}
+  \end{center}
+\end{figure}
+%-----------------------------------
+
+% TODO from here
 % In code package provided, set a maximum width to which limits are considered valid. Points with greater widths will not return rescaled limits. This prevents accidental application of limits beyond appropriate boundaries.
-
-Comment on analysis responsibility for setting largest reasonable width. But basically say we are starting the discussion with a scenario where a single observed limit curve satisfactorily represents all the couplings we're interested in checking. In cases where the mass resolution is small relative to the intrinsic widths probed, and so a single observed limit is not sufficient, a modified technique can be applied as described in Section~\ref{sec:dilepton}. 
-
-
-% Illustrate with a plot? Could show from the one CMS one that hasn't been interpreted yet, that I can get a good mediator plot using non-gdm=0 starting?
- 
+Comment on analysis responsibility for setting largest reasonable width. But basically say we are starting the discussion with a scenario where a single observed limit curve satisfactorily represents all the couplings we're interested in checking. In cases where the mass resolution is small relative to the intrinsic widths probed, and so a single observed limit is not sufficient, a modified technique can be applied as described in Section~\ref{subsec:dilepton}.  
 
 \subsection{Dilepton and other high-resolution resonances}
 \label{subsec:dilepton}
@@ -441,12 +459,6 @@ Using signal generation to determine cross sections creates a time and CPU limit
 % What do we begin from? Mass-mass exclusion plane in one of our models for some fixed set of parameter values
 Therefore the goal of these studies is to use the same starting information - a full signal grid in the \mMed-\mDM for one coupling scenario - and determine a method for rescaling to another target scenario without requiring the generation of many individual signal points. 
 
-% Commenting out as this is all tackled in separate section now.
-% What assumptions do we make? Assume acceptances don't change as a result of varying couplings; 
-% assume k-factors are essentially flat across this plane such that LO rescaling of NLO x-section arrives at fairly decent NLO x-sec.
-% Do we need to back these up? For now, point out that same set of assumptions as with existing method.
-% Two assumptions are commonly made when applying the existing technique: that first, the $k$-factors relating LO to NLO cross sections, and second, the fiducial acceptance of an analysis are both essentially invariant with coupling for fixed masses. The consistency of $k$-factors has been verified by generating NLO signals for a subset of the relevant scenarios and implies that a ratio of LO cross sections applied to an NLO cross section in the original scenario provides an adequate approximation of an NLO cross section in the target scenario. Invariance of analysis acceptance was verified in the $\met+j$ and $\met+\gamma$ analyses and means no additional factor is required to account for changes in mediator width~\cite{DMSP}.
-% The method developed here keeps these same assumptions, producing a re-scaling based only on LO cross sections with no consideration for experimental acceptance. It is recommended that a user consider the validity of these assumptions when applying the new rescaling techniques. 
 {\color{red}TODO add sentence here on why we need a grid: both mDM and mMED because both affect MET distribution/analysis acceptance}
 
 The semi-analytical rescaling method developed here for \metplusx signatures has two separate components. One can be used to rescale a source scenario to another set of couplings within the same overall model, while the other should be used when the source scenario in one model is rescaled to a target in a different model (e.g. vector mediator to axial-vector mediator).
@@ -579,7 +591,7 @@ Would like to show a full summary plot with 36 ifb results from a variety of cha
 
 % Document public code here?
 
-\newpage 
+% \newpage 
 
 \bibliography{CouplingScan-whitepaper}
 \bibliographystyle{JHEP}
