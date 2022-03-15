@@ -328,9 +328,16 @@ A second assumption of the rescaling method is that the effects of a signal on a
 \label{sec:resonant}
 
 % Relevant physical signature: qq->med->ff
+For resonant final states, as discussed in \ref{sec:models}, the effects on the cross section of varying model parameters can be explored by considering the process $qq\rightarrow \text{med} \rightarrow f \bar{f}$ regardless of the presence of ISR. The kinematics, acceptance, and amount of background observed in the final state do depend on the presence of ISR, as well as strongly depending on the mass of the mediator. These factors enforce that any reinterpretation of limits must be within a single analysis final state, that is, must not alter the presence or absence of additional radiation, and cannot rescale a limit based on one mediator mass to constrain a different mediator mass. This last point is very clear when one considers how the exponentially decreasing background in a resonance search must result in a very different number of observed events corresponding to two different invariant masses. 
+
+% Note that for visible physical signature, a 1D limit is sufficient because DM mass has very minimal effect on signature in detector. All it can change is width (to be discussed shortly) and cross section (which is what we are rescaling anyway).
+Resonant analysis limits can be reinterpreted across changing couplings, since varying couplings can affect only the cross section (the target for the rescaling) and the intrinsic width but not the invariant mass of an observed signal. Variations in intrinsic width will affect the detector signature of a signal point if that intrinsic width of the model is on the order of the experimental mass resolution. This is the case with high-resolution final states such as dilepton and can be handled by using analysis limits parameterised by intrinsic width. This will be discussed further in Section~\ref{subsec:dilepton}.
+
+One key point distinguishing visible from invisible final states is that resonant (visible) limits can be reinterpreted across varying dark matter masses \mdm. With no coupling to DM present in the leading order interaction for these final states, changing \mdm will only affect the result through variation in the cross section and intrinsic width, as in the case of varying couplings. This means the analysis limits used as inputs to derive exclusions in the \mMed-\mdm plane can be one-dimensional and parameterised only as a function of \mMed.
+
 % On-shell approximation from original paper tells us that we can approximate sigma as ΓiΓf/Γtot for on-shell mediators. In visible final state, we are always on-shell as long as we have any light quarks or leptons to decay to, and all at-all-relevant mediator masses have this. So the on-shell approximation is valid everywhere. And width formulas are already well known for these models. So we can make an approximate cross section - only for comparison to other approximated, not real, cross sections but sufficient for all rescalings, of sigma_{somelabel} \sim widths.
+
 % What we start from in analysis: a 1D limit for a single model and set of couplings, either an observed limit on cross section + theoretical prediction or (for dijet only?) a limit on gq, both as a function of mediator mass. Take a moment to point out that these are very interconnected: for (decoupled DM?) can convert directly from one to the other via g_q^lim = g_q^{th.curve}sqrt(obs_sigma/theory_sigma <- these are real from plot). So these are equivalent starting points.
-% Note that for visible physical signature, this 1D limit is sufficient because DM mass has very minimal effect on signature in detector. All it can change is width (to be discussed shortly) and cross section (which is what we are rescaling anyway).
 % What we want is exclusion depth in 2D plane. Define exclusion depth: observed limit on cross section divided by theoretical prediction for cross section. Depth = 1 -> limit in this model & scenario. Depth < 1: excluded; depth > 1; not excluded. With this full information, rescaling by cross section makes it possible to easily find exclusion limit for any model & scenario.
 % First step is to rescale a 1D limit to a 2D limit with depth information. Discuss:
 % - Want depth, d_ex. Starting from 1D limit on cross sections, with observed xsec limit = obs_sigma and predicted theory_sigma, d_ex = obs_sigma/theory_sigma. This corresponds to some set of couplings and masses in which this theory line was defined: g_q, g_l, g_dm, m_DM. m_MED is on the x-axis.
@@ -347,15 +354,8 @@ A second assumption of the rescaling method is that the effects of a signal on a
 % Only remaining subtlety is correct handling of varying widths, where applicable. Start with simple example case where it isn't, then show where it is.
 % Note examples are taken from CMS where this technique has been in use for some time and all summary plots in Run 2 have used it. Recently began to be used in ATLAS. Technique is being documented here for public clarity.
 
-Why we can start from 1D limit here: tie it into physical signature. Mention that math worked out in this section assumes you have negligible sensitivity to intrinsic width; see next section for otherwise.
-
+% Old stuff below
 Point to cross-section-mass plot. Exclusion depth is obs/theory - thus in 1D exclusion limit is where the two cross. For mass-mass plots this depth exists in 2D plane and what we want is twofold: find it from inputs that are standardly produced by analysis teams and 2) rescale it analytically to other couplings etc.
-
-% Introduce: this was developed by CMS and has been in use for a long time.  Taking this opportunity to document it in detail.
-
-What's fixed? Can't rescale from one mediator mass to another since that is what directly dictates analysis properties. So can only interpret in other dimensions.
-Can interpret across dark matter mass, specifically because no DM mass present in leading order diagram for visible final states.
-Can interpret across couplings, since changing couplings changes cross sections and widths but nothing else.
 
 Approach: change cross section of signal as long as it stays within bounds where the experimental limit for such a model would be the same, or is otherwise known. That is, shape and/or acceptance do not change outside the bounds of what we have experimental results to cover. In this case, can rescale the exclusion depth by the ratio of theoretical cross sections for the scenario in which the limit plot was made and the scenario in which you wish to interpret it. We use a range of approximations for those cross sections depending on 
 
