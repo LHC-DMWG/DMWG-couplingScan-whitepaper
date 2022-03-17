@@ -165,13 +165,13 @@
 \affiliation[2]{Ohio State University and Center for Cosmology and Astroparticle Physics, \\
 191 W. Woodruff Avenue Columbus, OH 43210, USA}
 
-\author[3,*]{Oleg~Brandt,}
+\author[3,*]{Oleg~Brandt,} % KP: no longer DMWG convener
 \affiliation[3]{Cavendish Laboratory, JJ Thomson Avenue, Cambridge CB3 0HE, UK}
 
 \author[4]{Eric~Corrigan,}
 \affiliation[4]{Fysiska institutionen, Lunds universitet, Professorsgatan 1, Lund, Sweden}
 
-\author[1]{Zeynep~Demiragli,}
+\author[1]{Zeynep~Demiragli,} % KP: who is this?
 
 \author[4]{Caterina~Doglioni,}
 
@@ -181,6 +181,8 @@
 
 \author[6]{Boyu~Gao,}
 \affiliation[6]{Duke University, Durham, NC 27708, USA}
+
+\author[4]{Josh~Greaves}
 
 \author[7,*]{Ulrich~Haisch,}
 \affiliation[7]{Max Planck Institute for Physics, F{\"o}hringer Ring 6,  80805 M{\"u}nchen, Germany}
@@ -220,7 +222,7 @@
 \affiliation[*]{LHC DM WG conveners}
 
 
-\hfill CERN-LPCC-2020-XX
+%\hfill CERN-LPCC-2020-XX
 
 \abstract{
 Dark matter is one of the main science drivers of the particle and astroparticle physics community.  Determining the nature of dark matter will require a broad approach, with a range of experiments pursuing different experimental hypotheses. As one axis of this search program, collider experiments provide insight on dark matter which are complementary to searches in direct/indirect detection experiments and to astrophysical evidence.
@@ -472,12 +474,12 @@ The $\mathcal{I}_{\text{prop}}$-based scaling procedure is illustrated in Figure
 \begin{figure}[htp!]
   \begin{center}
   \begin{subfigure}[b]{0.49\textwidth}  
-    \includegraphics[width=\textwidth]{figures/monox/EXOT-2016-32_AV_gq0p25_gchi1p0_gl0p0_compare.pdf}
+    \includegraphics[width=\textwidth]{figures/monox/EXOT-2016-32_AV_gq0p25_gchi1p0_original_withcontour.pdf}
     \caption{}
     \label{subfig:monophoton_A1}
   \end{subfigure}
   \begin{subfigure}[b]{0.49\textwidth}  
-    \includegraphics[width=\textwidth]{figures/monox/EXOT-2016-32_AV_gq0p1_gchi1p0_gl0p1_compare.pdf}
+    \includegraphics[width=\textwidth]{figures/monox/EXOT-2016-32_AV_gq0p1_gl0p1_gchi1p0_compare.pdf}
     \caption{}
     \label{subfig:monophoton_A2}  
   \end{subfigure}
@@ -518,12 +520,12 @@ A demonstration of the $\sigma_{V/AV}^{\text{tot}}$-based scaling procedure is g
 \begin{figure}[htp!]
   \begin{center}
   \begin{subfigure}[b]{0.49\textwidth}  
-    \includegraphics[width=\textwidth]{figures/monox/EXOT-2016-32_V_gq0p25_gchi1p0_gl0p0_compare.pdf}
+    \includegraphics[width=\textwidth]{figures/monox/EXOT-2016-32_V_gq0p25_gchi1p0_compare.pdf}
     \caption{}
     \label{subfig:monophoton_V1}
   \end{subfigure}
   \begin{subfigure}[b]{0.49\textwidth}  
-    \includegraphics[width=\textwidth]{figures/monox/EXOT-2016-32_V_gq0p1_gchi1p0_gl0p01_compare.pdf}
+    \includegraphics[width=\textwidth]{figures/monox/EXOT-2016-32_V_gq0p1_gl0p01_gchi1p0_compare.pdf}
     \caption{}
     \label{subfig:monophoton_V2}  
   \end{subfigure}
@@ -542,14 +544,34 @@ The full recommended procedure for rescaling \metplusx analysis results is there
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Combined examples of coupling-scaled exclusion plots}
 
-Would like to show a full summary plot with 36 ifb results from a variety of channels, then scale to at least one set of as-yet-unexplored couplings, to illustrate the power. Probably just 1 to 2 figures here.
+An example of the opportunities which rescaling across couplings presents is shown in Figure~\ref{fig:combined}. The limits from the CMS dijet and ATLAS monophoton analyses studied above are combined into single exclusion contours for a fixed set of couplings and a range of couplings are overlaid. For this figure, $g_\chi$ and $g_l$ are held constant while $g_q$ is gradually reduced. Both dijet and monophoton exclusion limits become weaker as $g_q$ decreases. Such a detailed study of the effect of couplings on exclusion limits is possible because of the drastically reduced computing time involved in determining each rescaling.
 
+%-----------------------------------
+\begin{figure}[htp!]
+  \begin{center}
+  \begin{subfigure}[b]{0.49\textwidth}  
+    \includegraphics[width=\textwidth]{figures/combined/massmass_axial_gl0.0_gdm1.0.pdf}
+    \caption{}
+    \label{subfig:combined_a}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\textwidth}  
+    \includegraphics[width=\textwidth]{figures/combined/massmass_vector_gl0.0_gdm1.0.pdf}
+    \caption{}
+    \label{subfig:combined_v}  
+  \end{subfigure}
+  \caption{Exclusion limits of the dijet and monophoton analyses combined, corresponding to 36 fb$^{-1}$ of LHC data, when the coupling to quarks is varied. The dark matter coupling is held fixed at $g_\chi=1.0$ and there is no coupling between the mediators and leptons. The shaded region is excluded at the corresponding $g_q$ value. Axial-vector (\subref{subfig:combined_a}) and vector (\subref{subfig:combined_v}) mediators show similar patterns, though with a more pronounced cutoff along the $\mMed = 2 \mdm$ line for axial-vector mediators. All exclusion regions shrink as $g_q$ decreases.
+  }
+  \label{fig:combined}
+  \end{center}
+\end{figure}
+%-----------------------------------
+
+Similar plots can be made varying $g_\chi$ or $g_l$ instead. Decreasing $g_l$ greatly reduces the power of dilepton exclusions while slightly increasing the power of dijet exclusions, since the dijet signatures then takes a higher fraction of the branching ratio; it has a smaller but nonzero impact on \metplusx exclusion curves. Decreasing $g_\chi$ increases the power of visible final state exclusions and decreases that of \metplusx analyses. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Relic densities in DM simplified models}
 
-<<<<<<< HEAD
-Calculation of the dark matter relic density invovles computing the cross section for dark matter annihlation to standard model particles. In this scenario, two production modes tend to dominate, single mediator production and double mediator production. Single mediator production occurs the dark matter annihilates with itself to make a single mediator that then decays to standard model particles. This production mode is the inverse of the production mode probed when searching for $\slash{E_{T}}+$X final states, and is resonantly enhanced along the $2 \mDM=\mMed$ line. The second production mode occurs from double mediator production, both diagrams for the production of these samples is shown in figure~\ref{fig:relicprod}\cite{Albert:2017onk}.
+Calculation of the dark matter relic density invovles computing the cross section for dark matter annihlation to standard model particles. In this scenario, two production modes tend to dominate, single mediator production and double mediator production. Single mediator production occurs the dark matter annihilates with itself to make a single mediator that then decays to standard model particles. This production mode is the inverse of the production mode probed when searching for $\slash{E_{T}}+$X final states, and is resonantly enhanced along the $2 \mDM=\mMed$ line. The second production mode occurs from double mediator production, both diagrams for the production of these samples is shown in figure~\ref{fig:relicprod}~\cite{Albert:2017onk}.
 
 
 \begin{center}
@@ -557,22 +579,23 @@ Calculation of the dark matter relic density invovles computing the cross sectio
 \centering
 \includegraphics[width=0.78\textwidth]{figures/DMAnnihilationDiagrams.png} 
 \vspace{4mm}
-\caption{Feynman graphs of 
-DM $s$-channel annihilation to quarks (left) and $t$-channel annihilation to a pair of mediators subsequently decaying to quarks (right). The exchanged~$\Phi$ particle(s) can be either (pseudo-)scalar or (axial-)vector mediator(s). 
+\caption{Feynman diagrams of DM $s$-channel annihilation to quarks (left) and $t$-channel annihilation to a pair of mediators subsequently decaying to quarks (right). The exchanged~$\Phi$ particle(s) can be either (pseudo-)scalar or (axial-)vector mediator(s). 
 }
 \label{fig:relicprod}
 \end{figure}
 \end{center}
   
 When computing the relic density, we can approximate broad features of the calculation by understanding the form of the leading order production cross section. The leading order cross section can be written as
-\begin{align}
-  \sigma_{{\rm ann},s}^V \cdot v & = \sum_{q} \frac{N_c^q \hspace{0.125mm} g_{\rm DM}^2 \hspace{0.25mm} g_q^2 \hspace{0.5mm} \beta_q}{2 \pi} \,  \frac{2 m_{\rm DM}^2+ m_q^2}{\left (M_{\rm med}^2 - 4 m_{\rm DM}^2 \right )^2 + M_{\rm med}^2 \Gamma_{\rm med}^2} \,, \label{eq33} \\
-\end{align}
+\begin{equation}
+\label{eq33}
+  \sigma_{{\rm ann},s}^V \cdot v = \sum_{q} \frac{N_c^q \hspace{0.125mm} g_{\rm DM}^2 \hspace{0.25mm} g_q^2 \hspace{0.5mm} \beta_q}{2 \pi} \,  \frac{2 m_{\rm DM}^2+ m_q^2}{\left (M_{\rm med}^2 - 4 m_{\rm DM}^2 \right )^2 + M_{\rm med}^2 \Gamma_{\rm med}^2} \,, 
+\end{equation}
 for the single mediator vector production, and it can be written as
 
-\begin{align}
-  \sigma_{{\rm ann},t}^V \cdot v & =  \frac{ g_{\rm DM}^4   \hspace{0.5mm} \beta_{\rm med}}{4 \pi}  \, \frac{m_{\rm DM}^2 - M_{\rm med}^2 }{\left (M_{\rm med}^2 - 2 m_{\rm DM}^2 \right )^2}  \,, \label{eq37} \\
-\end{align}
+\begin{equation}
+\label{eq37} 
+  \sigma_{{\rm ann},t}^V \cdot v  =  \frac{ g_{\rm DM}^4   \hspace{0.5mm} \beta_{\rm med}}{4 \pi}  \, \frac{m_{\rm DM}^2 - M_{\rm med}^2 }{\left (M_{\rm med}^2 - 2 m_{\rm DM}^2 \right )^2}\,,
+\end{equation}
 for the double mediator produdciton.
 
 When we consider single meidator produciton, if we take $ \sigma_{{\rm ann},t}^V \cdot v $ to be propotional to the thermalized cross section obtained from the full relic density calcualtion, and we fix both dark matter mass $m_{\rm DM}$ and mediator mass $M_{\rm med}$, then we have that both equations above can be written in the form of a quadratic equation. Namely, for some constants $A,B,C,D,E,F$, we can write
@@ -588,33 +611,31 @@ The bounds from these models is clearly substantial, and helps to serve as a gui
 \begin{figure}[htp!]
   \begin{center}
   \begin{subfigure}[b]{0.49\textwidth}  
-    \includegraphics[width=\textwidth]{figures/coupling/s_gqmin.pdf}
+    \includegraphics[width=\textwidth]{figures/coupling/s_gqmin.png}
     \caption{}
     \label{subfig:scalar}
   \end{subfigure}
   \begin{subfigure}[b]{0.49\textwidth}  
-    \includegraphics[width=\textwidth]{figures/coupling/p_gqmin.pdf}
+    \includegraphics[width=\textwidth]{figures/coupling/p_gqmin.png}
     \caption{}
     \label{subfig:pseudoscalar}  
   \end{subfigure}
    \begin{subfigure}[b]{0.49\textwidth}  
-    %\includegraphics[width=\textwidth]{figures/coupling/v_gqmin.pdf}
+    \includegraphics[width=\textwidth]{figures/coupling/v_gqmin.png}
     \caption{}
     \label{subfig:vector}
   \end{subfigure}
   \begin{subfigure}[b]{0.49\textwidth}  
-    \includegraphics[width=\textwidth]{figures/coupling/a_gqmin.pdf}
+    \includegraphics[width=\textwidth]{figures/coupling/a_gqmin.png}
     \caption{}
     \label{subfig:axialvector}  
   \end{subfigure}
   \caption{
-    Minimum allowed coupling for the scalar (top-left), pseudo-scalar(top-right), axial-vector(bot-left), and vector(bot-right) mediators. The minimum coupling is computed on the z-axis. For the scalar, and pseudoscalar mediators, this coupling is treated as a correction to the yukawa coupling.  
+    Minimum allowed coupling for the scalar (\subref{subfig:scalar}), pseudo-scalar(\subref{subfig:pseudoscalar}), vector(\subref{subfig:vector}), and axial-vector(\subref{subfig:axialvector}) mediators. The minimum coupling is computed on the z-axis. For the scalar and pseudoscalar mediators, this coupling is treated as a correction to the yukawa coupling.  
   }
   \label{fig:mincoupling}
   \end{center}
 \end{figure}
-
-%{\color{red}Put cool plots from Phil here. BTW Phil, I'm still hoping that between the Snowmass version of this whitepaper and one we might hope to publish via the DMWG, I may have time to actually add some monojet rescaling for scalar/pseudoscalar. So if that comes to pass, then it will match more nicely with having all four relic density plots here. Even if it doesn't I still think having all 4 is best! :) }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
