@@ -256,7 +256,7 @@ To briefly summarise what is not included in this framework: certain of the LHC 
 
 The simplified models considered in this study are detailed extensively in Refs.~\cite{ABERCROMBIE2020100371,ALBERT2019100377}. Each simplified model adds two new particles beyond the Standard Model: a Dirac fermion dark matter particle $\chi$ and an $s$-channel mediator particle. This mediator can be spin-1, in which case its couplings can be either vector or axial-vector in nature, or spin-0, in which case its couplings can be scalar or pseudo-scalar. In this paper, we will refer to these four different mediator types as different models.
 
-Each model introduces two types of new vertex: a vertex between the mediator and a pair of DM particles, and a vertex between the mediator and a pair of SM fermions. There is no interaction between the mediator and SM bosons, and no interaction between the DM particle and any particle other than the mediator. The strength of the interactions at each vertex is governed by a coupling $g$. ATLAS and CMS treat the mediator-SM interactions as having a single universal coupling strength \gq for all mediator-quark interactions and a single universal coupling strength \gl for all mediator-lepton interactions, including neutrinos. Mediators with smaller masses will be kinematically forbidden from decaying into heavy quarks or leptons, but the coupling is still taken to be constant for all fermion generations. For vector and axial-vector mediators, this leads to truly universal quark and lepton couplings. For scalar and pseudoscalar mediators, the fermion couplings are proportional to the SM Higgs couplings, but the where the overall relative strengths of the quark and lepton coupling types are scaled by \gq and \gl. No Higgs mixing is included in the spin-0 simplified models. These choices mean that the four simplified models are in fact fully defined by five free parameters: the mediator mass \mMed, the dark matter particle mass \mDM, the coupling strength between the mediator and DM particles \gdm, and the two mediator-SM universal coupling strengths \gq and \gl. In this paper, we will refer to different sets of coupling values within the same model  as different scenarios.
+Each model introduces two types of new vertex: a vertex between the mediator and a pair of DM particles, and a vertex between the mediator and a pair of SM fermions. There is no interaction between the mediator and SM bosons, and no interaction between the DM particle and any particle other than the mediator. The strength of the interactions at each vertex is governed by a coupling $g$. ATLAS and CMS treat the mediator-SM interactions as having a single universal coupling strength \gq for all mediator-quark interactions and a single universal coupling strength \gl for all mediator-lepton interactions, including neutrinos. Mediators with smaller masses will be kinematically forbidden from decaying into heavy quarks or leptons, but the coupling is still taken to be constant for all fermion generations. For vector and axial-vector mediators, this leads to truly universal quark and lepton couplings. For scalar and pseudoscalar mediators, the fermion couplings are proportional to the SM Higgs couplings, where the overall relative strengths of the quark and lepton coupling types are scaled by \gq and \gl. No Higgs mixing is included in the spin-0 simplified models neither is mixing with the Z-boson for the spin-1 models. These choices mean that the four simplified models are in fact fully defined by five free parameters: the mediator mass \mMed, the dark matter particle mass \mDM, the coupling strength between the mediator and DM particles \gdm, and the two mediator-SM universal coupling strengths \gq and \gl. In this paper, we will refer to different sets of coupling values within the same model  as different scenarios.
 
 The rescaling methods presented here are computed using leading-order approximations for the cross sections of the key processes. For vector and axial-vector mediators, the relevant processes are resonant SM particle pair production, with or without accompanying initial state radiation (ISR), and invisible decay of a mediator in the presence of ISR leading to a final state of a single SM particle and significant missing energy. Examples of these processes, a dijet and a monojet scenario, are illustrated in Fig.~\ref{fig:diagrams}. Decays of the mediator to leptons, or the presence of an ISR particle (jet, photon, etc), also provide visible signatures with significant exclusion power; mono-photon or other mono-boson analyses are also relevant invisible signatures. However, in all such cases, the change in cross section due to a variation in the DM model or scenario studied can be estimated from the core $qq\rightarrow \text{med} \rightarrow f \bar{f}$ or $qq\rightarrow \text{med} \rightarrow \chi \bar{\chi}$ process; the effect of an ISR particle cancels out in the cross section ratio used for rescaling.
 
@@ -311,7 +311,7 @@ The rescaling methods presented here are computed using leading-order approximat
 \end{center}
 \end{figure}
 
-For scalar and pseudoscalar mediators, the leading order DM or SM production diagrams are significantly more complex and additional signatures like $bb+\MET$ become important. For this reason, although similar rescaling formulas could be computed for the scalar and pseudoscalar models, they are beyond the scope of the present paper. Rescaling options presented here will therefore focus only on the vector and axial-vector models. Any readers interested in using or helping to develop scalar/pseudoscalar rescaling are invited to contact the authors.
+For scalar and pseudoscalar mediators, the leading order DM or SM production diagrams are significantly more complex and additional signatures like $tt+\MET$ become important. For this reason, although similar rescaling formulas could be computed for the scalar and pseudoscalar models, they are beyond the scope of the present paper. Rescaling options presented here will therefore focus only on the vector and axial-vector models. Any readers interested in using or helping to develop scalar/pseudoscalar rescaling are invited to contact the authors.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Assumptions and caveats}
@@ -488,7 +488,71 @@ Would like to show a full summary plot with 36 ifb results from a variety of cha
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Relic densities in DM simplified models}
 
-{\color{red}Put cool plots from Phil here}
+Calculation of the dark matter relic density invovles computing the cross section for dark matter annihlation to standard model particles. In this scenario, two production modes tend to dominate, single mediator production and double mediator production. Single mediator production occurs the dark matter annihilates with itself to make a single mediator that then decays to standard model particles. This production mode is the inverse of the production mode probed when searching for $\slash{E_{T}}+$X final states, and is resonantly enhanced along the $2 \mDM=\mMed$ line. The second production mode occurs from double mediator production, both diagrams for the production of these samples is shown in figure~\ref{fig:relicprod}\cite{Albert:2017onk}.
+
+
+\begin{center}
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.78\textwidth]{figures/DMAnnihilationDiagrams.png} 
+\vspace{4mm}
+\caption{Feynman graphs of 
+DM $s$-channel annihilation to quarks (left) and $t$-channel annihilation to a pair of mediators subsequently decaying to quarks (right). The exchanged~$\Phi$ particle(s) can be either (pseudo-)scalar or (axial-)vector mediator(s). 
+}
+\label{fig:relicprod}
+\end{figure}
+\end{center}
+  
+When computing the relic density, we can approximate broad features of the calculation by understanding the form of the leading order production cross section. The leading order cross section can be written as
+\begin{align}
+  \sigma_{{\rm ann},s}^V \cdot v & = \sum_{q} \frac{N_c^q \hspace{0.125mm} g_{\rm DM}^2 \hspace{0.25mm} g_q^2 \hspace{0.5mm} \beta_q}{2 \pi} \,  \frac{2 m_{\rm DM}^2+ m_q^2}{\left (M_{\rm med}^2 - 4 m_{\rm DM}^2 \right )^2 + M_{\rm med}^2 \Gamma_{\rm med}^2} \,, \label{eq33} \\
+\end{align}
+for the single mediator vector production, and it can be written as
+
+\begin{align}
+  \sigma_{{\rm ann},t}^V \cdot v & =  \frac{ g_{\rm DM}^4   \hspace{0.5mm} \beta_{\rm med}}{4 \pi}  \, \frac{m_{\rm DM}^2 - M_{\rm med}^2 }{\left (M_{\rm med}^2 - 2 m_{\rm DM}^2 \right )^2}  \,, \label{eq37} \\
+\end{align}
+for the double mediator produdciton.
+
+When we consider single meidator produciton, if we take $ \sigma_{{\rm ann},t}^V \cdot v $ to be propotional to the thermalized cross section obtained from the full relic density calcualtion, and we fix both dark matter mass $m_{\rm DM}$ and mediator mass $M_{\rm med}$, then we have that both equations above can be written in the form of a quadratic equation. Namely, for some constants $A,B,C,D,E,F$, we can write
+\begin{align}
+A g_{q}^2g_{\rm DM}^2 + B g_{q}^2+Cg_{\rm DM}^2+D g_{q}^4+ E g_{\rm DM}^4+F=0
+\end{align}
+This also follows from the fact that the widths for standard model particles $\Gamma_{\rm SM}\propto g_{q}^2$, and that the width from dark matter  $\Gamma_{\rm DM}\propto g_{\rm DM}^2$. From this form, we observe that if $g_{\rm DM}$ is a constant, then this equation immediately reduces to a quadratic equation in $g_{q}^2$, and likewise for $g_{\rm DM}^2$ when $g_{q}$ is a constant. Furthermore, the quartic terms $C$ and $D$ are also positive. As a consequence, when all couplings are fixed with the exception of either $g_{q}$ or $g_{\rm DM}$ there is a well defined coupling minimum, and for coupling smaller than the minimum the relic density is larger, and for couplings larger than the minimum. By scanning the couplings, we can find both the minimum and maximum allowed coupling that would satisfy the dark matter relic density.
+
+Figure~\ref{fig:mincoupling} shows the result of a procedure whereby we scan the standard model coupling, compute the relic density and the find the minimum allowed coupling that would not overproduce dark matter. We present this plot for each of the simplified models used within the LHC Dark Matter Working Group. What we find is that for large regons of phase space, in particular light dark matter with a heavy mediator  there is no solution that will produce an underabundance of dark matter. Additionally, we find that couplings of order $g_{q}=1$ are required to statisfy the dark matter relic density for spin 0 scalar and pseudo scalar mediators, and couplings of order $g_{q}=0.1$ or larger are needed to explain spin -1 vector and axial-vector mediators.
+
+The bounds from these models is clearly substantial, and helps to serve as a guide. We would like to stress the fact that as models become more complicated these bounds can change substantially. However, this provides a clear set of benchmarks that can viewed as a target for both invisible, for light dark matter, and visible, for heavy dark matter, searches. 
+
+\begin{figure}[htp!]
+  \begin{center}
+  \begin{subfigure}[b]{0.49\textwidth}  
+    \includegraphics[width=\textwidth]{figures/coupling/s_gqmin.pdf}
+    \caption{}
+    \label{subfig:scalar}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\textwidth}  
+    \includegraphics[width=\textwidth]{figures/coupling/p_gqmin.pdf}
+    \caption{}
+    \label{subfig:pseudoscalar}  
+  \end{subfigure}
+   \begin{subfigure}[b]{0.49\textwidth}  
+    %\includegraphics[width=\textwidth]{figures/coupling/v_gqmin.pdf}
+    \caption{}
+    \label{subfig:vector}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\textwidth}  
+    \includegraphics[width=\textwidth]{figures/coupling/a_gqmin.pdf}
+    \caption{}
+    \label{subfig:axialvector}  
+  \end{subfigure}
+  \caption{
+    Minimum allowed coupling for the scalar (top-left), pseudo-scalar(top-right), axial-vector(bot-left), and vector(bot-right) mediators. The minimum coupling is computed on the z-axis. For the scalar, and pseudoscalar mediators, this coupling is treated as a correction to the yukawa coupling.  
+  }
+  \label{fig:mincoupling}
+  \end{center}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
