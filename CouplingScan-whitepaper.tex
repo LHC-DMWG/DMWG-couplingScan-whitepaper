@@ -151,12 +151,9 @@
 
 \def\bm#1{\mbox{\boldmath$#1$\unboldmath}} 
 
-\begin{document}
-\title{\begin{boldmath} \huge Displaying dark matter constraints from colliders with varying simplified model parameters \vspace{7mm} \end{boldmath}}
+\title{Displaying dark matter constraints from colliders with varying simplified model parameters}
 
 %%%%%%
-
-%Add your name here!
 
 \author[1]{Andreas~Albert,}
 \affiliation[1]{Boston University, Dept.\ of Physics, 590 Commonwealth Avenue, Boston, \\ MA 02215, USA}
@@ -165,18 +162,17 @@
 \affiliation[2]{Ohio State University and Center for Cosmology and Astroparticle Physics, \\
 191 W. Woodruff Avenue Columbus, OH 43210, USA}
 
-\author[3,*]{Oleg~Brandt,} % KP: no longer DMWG convener
+\author[3]{Oleg~Brandt,}
 \affiliation[3]{Cavendish Laboratory, JJ Thomson Avenue, Cambridge CB3 0HE, UK}
 
 \author[4]{Eric~Corrigan,}
 \affiliation[4]{Fysiska institutionen, Lunds universitet, Professorsgatan 1, Lund, Sweden}
 
-\author[1]{Zeynep~Demiragli,} % KP: who is this?
+\author[1]{Zeynep~Demiragli,} 
 
 \author[4]{Caterina~Doglioni,}
 
-% KP: i specifically added Etienne bc I used some of his dilepton stuff, pls keep
-\author[5]{Etienne Dreyer,}
+\author[5]{Etienne~Dreyer,}
 \affiliation[5]{Weizmann Institute of Science, Herzl St 234, Rehovot, Israel}
 
 \author[6]{Boyu~Gao,}
@@ -184,15 +180,13 @@
 
 \author[4]{Josh~Greaves}
 
-\author[7,*]{Ulrich~Haisch,}
+\author[7]{Ulrich~Haisch,}
 \affiliation[7]{Max Planck Institute for Physics, F{\"o}hringer Ring 6,  80805 M{\"u}nchen, Germany}
 
-\author[8,*]{Philip~Harris,}
+\author[8]{Philip~Harris,}
 \affiliation[8]{Massachusetts Institute of Technology, 77 Massachusetts Avenue, Cambridge, MA, USA}
 
-\author[]{Jeffrey~Krupa,} % KP: who is this?
-
-\author[9]{Greg~Landsberg,} % KP: who is this?
+\author[9]{Greg~Landsberg,}
 \affiliation[9]{Brown University, Dept.\ of Physics, 182 Hope St, Providence, RI 02912, USA}
 
 \author[10]{Alexander~Moreno,}
@@ -201,14 +195,13 @@
 \author[11]{Katherine~Pachal,}
 \affiliation[11]{TRIUMF, 4004 Wesbrook Mall, Vancouver, BC V6T 2A3, Canada}
 
-\author[12,*]{Priscilla~Pani,}
+\author[12]{Priscilla~Pani,}
 \affiliation[12]{DESY Zeuthen, Platanenallee 6, 15738 Zeuthen, Germany}
 
-% KP: i specifically added Federica bc she provided me with all the monophoton help I needed in developing the mono-x method, pls keep
 \author[13]{Federica~Piazza,}
 \affiliation[13]{INFN Milano, Via G. Celoria, 16 I - 20133 Milano, Italy}
 
-\author[14,*]{Tim~M.~P.~Tait,}
+\author[14]{Tim~M.~P.~Tait,}
 \affiliation[14]{University of California Irvine, Irvine, CA 92697, USA}
 
 \author[9]{David~Yu,}
@@ -219,8 +212,8 @@
 \author[16]{Lian-Tao~Wang}
 \affiliation[16]{Department of Physics, University of Chicago, Chicago, IL. 60637 USA}
 
-\affiliation[*]{LHC DM WG conveners}
-
+\emailAdd{pcharris@mit.edu}
+\emailAdd{kpachal@triumf.ca}
 
 %\hfill CERN-LPCC-2020-XX
 
@@ -231,9 +224,11 @@ In order to compare results from a wide variety of experiments, a common theoret
 So far, the presentation of LHC results, as well as of projections of future hadron collider experiments, has focused on four benchmark scenarios within these simplified models with specific coupling values. In this work, we describe methods to extend those four benchmark scenarios to arbitrary couplings, and release the corresponding code for use in further studies. This will extend the applicability of the comparisons of collider searches to accelerator experiments that are sensitive to smaller couplings, and give a more complete picture of the coupling dependence of the sensitivity of dark matter collider searches when compared to direct and indirect detection searches. By using semi-analytical methods to model the dependence, we drastically reduce the computing resources needed relative to traditional approaches based on the generation of additional simulated signal samples. We focus here on s-channel DM simplified models where the mediator particle has vector or axial-vector couplings to DM and SM particles. This work will cover collider searches for both visible decays of the mediator particles and invisible decays with the associated production of one or more SM particles.
 } 
 
+\begin{document}
+
 \maketitle
 
-\vskip10pt
+%\vskip10pt
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -657,9 +652,15 @@ Although no rescaling formulae have so far been developed for lepton colliders o
 
 \acknowledgments 
 
-[To be updated] The research of A.~Boveia is supported by the U.S. DOE grant  DE-SC0011726. C.~Doglioni has received funding from the European Research Council under the European Union's Horizon 2020 research and innovation program (grant agreement 679305) and from the Swedish Research Council. U.~Haisch acknowledges the hospitality and support of the CERN Theoretical Physics Department. The work of T.~M.~P.~Tait is supported in part by NSF grant PHY-1316792. We gratefully acknowledge the support by the U.S. DOE. 
+[To be updated] The research of A.~Boveia is supported by the U.S. DOE grant  DE-SC0011726. U.~Haisch acknowledges the hospitality and support of the CERN Theoretical Physics Department. The work of T.~M.~P.~Tait is supported in part by NSF grant PHY-1316792. We gratefully acknowledge the support by the U.S. DOE. 
 
-[New] K.~Pachal's research is supported by TRIUMF, which receives federal funding via a contribution agreement with the National Research Council (NRC) of Canada.
+[Updated below]
+%CD
+Research by C. Doglioni is part of projects that have received funding from the European Research Council under the European Union’s Horizon 2020 research and innovation program (grant agreement 679305 and 101002463) and from the Swedish Research Council.
+%KP
+K.~Pachal's research is supported by TRIUMF, which receives federal funding via a contribution agreement with the National Research Council (NRC) of Canada.
+% Phil
+Research for P.~Harris is supported by Department of Energy Early Career Award. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
