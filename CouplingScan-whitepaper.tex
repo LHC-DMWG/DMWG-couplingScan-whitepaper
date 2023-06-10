@@ -28,6 +28,7 @@
 \usepackage{placeins}
 \usepackage{array}
 \usepackage{subcaption}
+\usepackage{minted}
 
 % Remove again before submission
 \usepackage{lineno}
@@ -667,19 +668,33 @@ Research by A.~Boveia is supported by the US Department of Energy (Grant DE-SC00
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% KP: for the "real" paper we should include an appendix documenting the code usage but for this stage we are not ready to document the code, so we don't need an appendix
-% \appendix
-
-% \section{Appendix}
-% \label{app:recast}
-
-% Document public code here
-
-% \newpage 
+% Bibliography 
 
 \bibliography{CouplingScan-whitepaper}
 \bibliographystyle{JHEP}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% KP: for the "real" paper we should include an appendix documenting the code usage but for this stage we are not ready to document the code, so we don't need an appendix
+\appendix
 
+\section{Package usage}
+\label{app:recast}
+
+The \texttt{couplingscan} package released here \ldots [add links and description of installation, depending on whether we just host as is on DMWG page or do something else]
+
+Note on LHAPDF and installation.
+
+Once installed in your environment, the code can be loaded in any python file via:
+\begin{minted}{python}
+from couplingscan.scan import *
+from couplingscan.rescaler import *
+\end{minted}
+
+The code is structured around two classes: Scans and Rescalers. [Discuss.]
+Any warnings of DO NOT DO's that are not expressly forbidden in code?
+
+Integration warnings may occur at some points in this calculation. For cases observed so far, the impact appears to be negligible. However, if the reported values from integrals with warnings begin to diverge from their neighbours or from expectation, it would merit further investigation and possibly the adoption of a new integration method (or a range of options) in the package.
 \end{document}
