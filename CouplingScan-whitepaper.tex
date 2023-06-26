@@ -384,10 +384,12 @@ where $g_{q,th}$ and $\tilde{\sigma}$ are defined for a theory curve which, comb
 % - We have g_lim and know sigmatilde' for the goal state. g_inputplot and sigmatilde are not defined because we have no g_q initial - but it cancels out, can use whatever we want. Use 1 for convenience. Then:
 % - d_ex' = (g_lim)^2 * (sigmatilde|1)/(sigmatilde') -> or equivalent for dilepton.
 \begin{equation}
+\label{eq:dijet_rescale}
 d_\text{ex}^\prime = g^2_{q,\text{lim}} (\frac{\tilde{\sigma}(g_q=1)}{\tilde{\sigma}^\prime})\,,
 \end{equation}
 all of which quantities can be calculated for a grid of (\mMed, \mdm) values from the one input curve. The equivalent exclusion depth extracted from a $g_l$ limit at a hadron collider with fixed $g_q$ is:
 \begin{equation}
+\label{eq:dilep_rescale}
 d_\text{ex}^\prime = g_{l,\text{lim}} (\frac{\tilde{\sigma}(g_l=1)}{\tilde{\sigma}^\prime})\,.
 \end{equation}
 
@@ -446,7 +448,7 @@ This method can be applied to dijet final states as well, or to any resonant fin
 
 % Why mono-x signatures need to contend with off-shell scenarios and thus cannot use the same approximations
 For \metplusx signatures, the relevant final state involves decay of a mediator to dark matter particles, and therefore the off-shell case has to be handled appropriately.
-The approximations used for visible resonant final states in Section~\ref{sec:resonant} require a well-defined decay width to the final state $\Gamma_f$, which goes to zero at $\mMed=2\mDM$ for an invisible final state. The approximation in fact loses validity before this diagonal is fully reached, as the transition across the on-shell to off-shell boundary is smooth. A method for re-scaling \metplusx signatures has therefore been developed with the goal of handling this transition smoothly such that it is applicable in all regimes. We believe this method is similar to that used by the $Z^\prime$-explorer collaboration, who have also been studying the question of \metplusx rescaling~\cite{Lozano:2021zbu}.
+The approximations used for visible resonant final states in Section~\ref{sec:resonant} require a well-defined decay width to the final state $\Gamma_f$, which goes to zero at $\mMed=2\mDM$ for an invisible final state. The approximation in fact loses validity before this diagonal is fully reached, as the transition across the on-shell to off-shell boundary is smooth. A method for re-scaling \metplusx signatures has therefore been developed with the goal of handling this transition smoothly such that it is applicable in all regimes. A similar approach is used by the $Z^\prime$-explorer collaboration, who in addition to treating visible final states for $Z^\prime$ models have also been studying the question of \metplusx rescaling~\cite{Lozano:2021zbu}.
 
 % How have they been handled previously? Discuss method.
 In the past, ATLAS and CMS \metplusx analyses have generated a grid of signal points in one of the four benchmark scenarios at full reconstruction level and used these to determine the region of (\mMed, \mDM) space excluded in that scenario~\cite{atlas_monojet_36ifb, cms_monojet_12ifb}. Three additional grids of signal points are then generated at LO and particle level in order to obtain cross section estimates for each point in the additional three benchmark scenarios. The ratio of cross sections between the points in the original scenario and the target scenarios is used to scale the limits, resulting in a new estimate of the excluded and non-excluded points within each target scenario. 
@@ -677,24 +679,153 @@ Research by A.~Boveia is supported by the US Department of Energy (Grant DE-SC00
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% KP: for the "real" paper we should include an appendix documenting the code usage but for this stage we are not ready to document the code, so we don't need an appendix
 \appendix
 
 \section{Package usage}
 \label{app:recast}
 
-The \texttt{couplingscan} package released here \ldots [add links and description of installation, depending on whether we just host as is on DMWG page or do something else]
+The \texttt{couplingscan} package is hosted on Github \href{https://github.com/LHC-DMWG/DMWG-couplingScan-code}{here} and can be installed with \texttt{pip} directly from this URL:
+\begin{minted}{bash}
+python -m pip install git+https://github.com/LHC-DMWG/DMWG-couplingScan-code.git
+\end{minted}
 
-Note on LHAPDF and installation.
+Full usage of the software depends on having LHAPDF installed before installing \texttt{couplingscan}. You can still install without it, and all methods for rescaling resonant signatures described in Section~\ref{sec:resonant} will be available. However, without a working LHAPDF installation, you will not be able to use the methods in Section~\ref{sec:monox}. To test if LHAPDF is correctly installed and configured, run \texttt{lhapdf-config} and look for meaningful output. 
 
-Once installed in your environment, the code can be loaded in any python file via:
+Once installed in your (virtual) python environment, the \texttt{couplingscan} classes can be conveniently loaded in any python file via:
 \begin{minted}{python}
 from couplingscan.scan import *
 from couplingscan.rescaler import *
 \end{minted}
 
-The code is structured around two classes: Scans and Rescalers. [Discuss.]
-Any warnings of DO NOT DO's that are not expressly forbidden in code?
+Example scripts producing the plots given in this paper are available in the \href{https://github.com/LHC-DMWG/DMWG-couplingScan-code/tree/master/tests}{\texttt{tests}} subdirectory of the package code on Github.
 
-Integration warnings may occur at some points in this calculation. For cases observed so far, the impact appears to be negligible. However, if the reported values from integrals with warnings begin to diverge from their neighbours or from expectation, it would merit further investigation and possibly the adoption of a new integration method (or a range of options) in the package.
+The package is structured around three classes, Scans, Limits, and Rescalers, and uses the broadcasting capabilities of numpy arrays. A \texttt{Scan} is created from a collection of (\mMed, \mDM) points and a set of couplings within one of the supported models and provides methods returning the mediator full and partial widths, the integral of the propagator, and the relative cross sections at parton or hadron level at each point. Thus the scan enables easy calculation of branching ratios and provides the necessary computations for later rescaling of limits. Note that the scan does not contain information about limits: experimental results like limits are treated separately. The scan simply encapsulates the behaviour of the model at the specified points in mass and coupling space. It is necessary to specify the type of the scan when creating it (\texttt{DMAxialModelScan}, \texttt{DMVectorModelScan}) to obtain the correct relative cross sections. For example, a scan with an axial vector mediator covering a grid with \mMed in $[200, 3600]$ GeV and \mDM in $[0, 1700$ GeV could be created like so:
+\begin{minted}{python}
+target_xvals = numpy.linspace(200,3600,35)
+target_yvals = numpy.linspace(0,1700,35)
+target_xgrid, target_ygrid = np.meshgrid(target_xvals,target_yvals)
+example_scan = DMAxialModelScan(
+    mmed=target_xgrid.flatten(),
+    mdm=target_ygrid.flatten(),
+    gq=0.25, gdm=1.0, gl=0.0
+)
+\end{minted}
+Although this example shows a uniform grid, inputs to a scan do not need to have a regular structure. Any distribution of points can be used. This makes it possible to create a scan from, for example, a non-regular signal grid used in a \metplusx analysis.
+
+The \texttt{Rescaler} class next makes it simple to scale limits defined in the same space as an initial scan into the scope of other scans. The constructor takes as input a scan in the scenario for which limits are derived and the exclusion depth $\sigma_\text{observed}/\sigma_\text{theory}$ at each point in the scan. These can then be converted to limits in any combination of couplings, in the same or a different model, with the appropriate function for the rescaling method. The returned limits take the form of a library. The keys give the couplings of the scenario they index, in the order $(\gq, \gDM, \gl)$. The returned limit values are in the same order as the input grid points and correspond to the same (\mMed, \mDM) values. As an example, the following code creates a rescaler using a scan \texttt{example\_scan} and dijet analysis limit values at each point in the scan given by \texttt{example\_limits}, then uses the simple branching ratio rescaling recommended for visible signatures to extract limits in the target models and couplings:
+\begin{minted}{python}
+example_rescaler = Rescaler(example_scan, example_limits)
+# Returns a dictionary with one entry; 
+# extracts that entry via its tuple of couplings.
+new_axial_limits = example_rescaler.rescale_by_br_quarks(
+    target_gq=0.1,target_gdm=1,target_gl=0.1,
+    model='axial')[(0.1,1,0.1)]
+# Returns a dictionary with four entries 
+# (all possible combinations of specified couplings).
+# The returned limits correspond to a vector model. Recall that for
+# resonant limits, the branching ratio method is sufficient for safely 
+# converting from the initial axial-vector scan to a target vector model.
+new_vector_limits = example_rescaler.rescale_by_br_quarks(
+    target_gq=[0.1,0.25],target_gdm=1,target_gl=[0.0,0.01],
+    model='vector')
+\end{minted}
+Both functions use \texttt{rescale\_by\_br\_quarks} since we are assuming \texttt{example\_limits} come from a dijet analysis. Equations~\ref{eq:dilep_rescale} and~\ref{eq:dilep_rescale} show that the branching ratio rescaling must use the partial width to the relevant final state. This is therefore the appropriate method for a dijet analysis.
+
+The \texttt{Rescaler} constructor takes up to three arguments:
+\begin{minted}{python}
+Rescaler(reference_scan, reference_exclusion_depths, 
+        max_intrinsic_width = 0.1)
+\end{minted}
+As discussed in Section~\ref{subsec:dilepton}, a single input limit is not always sufficient to capture the variation in analysis results expected for different mediator intrinsic widths, and there must always be some mediator intrinsic width at which it no longer applies. The third argument in the constructor (0.1 by default) is the maximum mediator intrinsic width to mass ratio for which the \texttt{reference\_exclusion\_depths} should be considered valid. For any rescaled points where the mediator width exceeds this value, the code will return a \texttt{NaN} value so the user can easily identify these points and avoid showing constraints for them. 
+Instead of supplying a \texttt{max\_intrinsic\_width}, the user could provide the \texttt{reference\_exclusion\_depths} in the form of a dictionary where each key is a mediator width-to-mass ratio and the corresponding value is an array of limits for this width. When constructed like this, the rescaler will use the following limits as input to calculate a return value for a point with mediator width-to-mass ratio $R$:
+\begin{itemize}
+    \item The limit with the smallest specified width to mass ratio for any $R$ less than that value;
+    \item A linear interpolation between the limits at the two nearest values for any $R$ between two provided widths;
+    \item No limit when $R$ is larger than the maximum supplied width to mass ratio, thus treating it as the maximum intrinsic width that can be considered.
+\end{itemize}
+For high resolution analyses such as dilepton searches, this method of constructing a rescaler from multiple limits is recommended, and will produce the best results.
+
+The available rescaling functions in class \texttt{Rescaler} are as follows. When the \texttt{model} parameter is not specified, the target is assumed to be in the same model as the initial scan.
+\begin{minted}{python}
+def rescale_by_br_quarks(self,target_gq, target_gdm, target_gl, 
+            model=None) :
+        '''Rescale according to BR(qq)^2/total width. All possible
+        combinations of specified couplings will be tested and
+        results will be returned along with the coupling values they 
+        correspond to. This method is appropriate for limits from 
+        di-quark final states.'''
+
+def rescale_by_br_leptons(self, target_gq, target_gdm, target_gl,
+            model=None):
+        '''Rescale according to BR(ll)^2/total width. All possible
+        combinations of specified couplings will be tested and
+        results will be returned along with the coupling values they 
+        correspond to. This method is appropriate for limits from 
+        dilepton final states.'''
+        
+def rescale_by_propagator(self,target_gq, target_gdm, target_gl, 
+            model=None):
+        '''Rescale according to I_prop = ratio of the propagators for 
+        the mediator particle. All possible combinations of specified 
+        couplings will be tested and results will be returned along with 
+        the coupling values they correspond to. This method is appropriate 
+        for any case where the initial and target scans are in the 
+        same model.'''
+
+def rescale_by_hadronic_xsec_monox(self,target_gq, target_gdm, target_gl, 
+            model=None):
+        '''Rescale mono-X limits using the ratio of hadron-level cross 
+        sections. All possible combinations of specified couplings will 
+        be tested and results will be returned along with the coupling 
+        values they correspond to. However, due to the lengthy calculation 
+        time required, it is recommended to use this for a single target 
+        scenario only, and only for cases where the target scenario is in 
+        a different model than the initial scan.'''        
+\end{minted}
+
+Note that by providing initial limit values flat at 1, e.g. \texttt{Rescaler(example\_scan,[1 for i in example\_scan.mmed])}, the return values from any rescaling method are simply the scale factors to be applied to an input limit scenario.
+
+For input limits already defined across a grid of (\mMed, \mDM) points, the rescaler object can be easily created with no additional steps, and all results can be obtained with only the above two classes. This is typical of \metplusx analyses. However, resonant analysis limits are often produced as one-dimensional limits on either cross section or coupling. The \texttt{Limits} class provides methods for converting some of the most common of these limit formats into exclusion depths on a (\mMed, \mDM) grid appropriate for creating scans. The following options are currently available:
+\begin{itemize}
+\item \texttt{CouplingLimit\_Dijet}: available for dijet final states only, this class is used when the analysis limits are provided in minimum coupling $g_q$ as a function of mediator mass. An example would be:
+\begin{minted}{python}
+test_gq_limit = CouplingLimit_Dijet(
+    mmed=xlist,
+    gq_limits=ylist,
+    mdm=10000,
+    gdm=0.0,
+    gl=0.0,
+    coupling='vector'
+)
+\end{minted}
+This is not optimal for precise analysis, since this form of limit uses only a single width-to-mass ratio per point, and that value is not consistent across the \mMed range. However, it is a fairly common way for ATLAS and CMS to frame these results, so a method is included that can convert it into a limit object.
+\item \texttt{CrossSectionLimit\_Dijet}: Following another common LHC limit format, this takes as input the x and y values of two curves: cross section limit as a function of \mMed and theoretical cross section as a function of \mMed. The constructor takes a set of $x$ values for each, so the two curves do not need to have the same granularity.  The other couplings for which the theory curve is defined must be specified. For example,
+\begin{minted}{python}
+test_xsec_limit = CrossSectionLimit_Dijet(
+  mmed_limit=xlist_xsec,
+  xsec_limit=ylist_xsec,
+  mmed_theory=xlist_theory,
+  xsec_theory=ylist_theory,
+  mdm=1,
+  gq=0.25,
+  gdm=1.0,
+  gl=0.0,
+  coupling='vector',
+  max_intrinsic_width=0.15
+)
+\end{minted}
+A dictionary corresponding to observed limits for signals of different widths can be given for \texttt{xsec\_limit} instead of a single value, analogously to the inputs for rescalers. In this case a similar dictionary of limits will be returned, indexed by width and ready for use in a rescaler. This method assumes two vertices between the mediator and quark pairs and so can only be used for dijet signatures.
+\item \texttt{CrossSectionLimit\_Dilepton}: This class is analogous to \texttt{CrossSectionLimit\_Dijet} but assumes one mediator vertex with quarks and one with leptons. Since dilepton signatures at the LHC essentially always have sufficiently good mass resolution to require accounting for mediator width, this class also requires that the input \texttt{xsec\_limit} be a dictionary organised by intrinsic width to mass ratio. 
+\end{itemize}
+From any of the above \texttt{Limits} classes, exclusion depths at the (\mMed, \mDM) points in a scan can then be easily extracted with the following function call:
+\begin{minted}{python}
+exclusion_depths = test_limit.extract_exclusion_depths(target_scan)
+\end{minted}
+
+As with any package, the user must be careful with how these classes are handled. Where possible, incorrect choices are prevented by the software: for example, users are prevented from using propagator-based rescaling to convert between different models. However, there are some invalid uses that can't be guarded against because they relate to the interpretation of inputs and outputs, and the user has to watch for these themselves. For example, creating a \texttt{CrossSectionLimit\_Dijet} object but inputting dilepton limits and treating the output as dilepton results will produce incorrect values but with no way for the software to detect the issue. Similarly, attempting to use these rescalers for lepton collider limits will run, but produce incorrect values: all cross section and branching ratio definitions included thus far assume a quark initial state. 
+
+With the hadronic cross section based rescaling for \metplusx signatures, integration warnings may occur at some points in the calculation. For cases observed so far, the impact appears to be negligible. However, if the reported values from integrals with warnings begin to diverge from their neighbours or from expectation, it would merit further investigation and possibly the adoption of a new integration method (or a range of options) in the package. Please feel free to contact the authors in this case.
+
+Note that although rescaling functions have not yet been developed for scalar and pseudoscalar mediators, users can create scans of both types and use them to extract full and partial widths. As noted above, rescaling functionality is not available in the \texttt{DMScalarModelScan} and \texttt{DMPseudoModelScan} classes at this time.
+
 \end{document}
